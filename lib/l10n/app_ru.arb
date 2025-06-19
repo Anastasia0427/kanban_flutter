@@ -1,0 +1,11 @@
+{
+    "language": "Русский",
+    "welcome": "Добро пожаловать!",
+    "youCan": "С kanban master ты сможешь эффективно управлять своими проектами",
+    "firstTime": "Впервые у нас?",
+    "signUpButton": "Регистрация",
+    "signIn": "Вход в аккаунт",
+    "signInButton": "Войти",
+    "email": "Email",
+    "password": "Пароль"
+}
