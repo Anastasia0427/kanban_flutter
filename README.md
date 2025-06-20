@@ -1,3 +1,3 @@
-# kanaban_flutter
+# kanban_flutter
 
 A new Flutter project.

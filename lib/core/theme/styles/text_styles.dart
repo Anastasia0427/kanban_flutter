@@ -5,9 +5,34 @@ import 'package:kanban_flutter/core/theme/style_extensions/text_style_extension.
 class TextStyles {
   static const lightTextStyle = TextStyleExtension(
     largeTitle: TextStyle(
+      fontSize: 40,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.primaryText,
+    ),
+    mediumTitle: TextStyle(
       fontSize: 28,
       fontWeight: FontWeight.w400,
       color: LightAppColors.primaryText,
+    ),
+    smallTitle: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.primaryText,
+    ),
+    buttonLabel: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.primaryText,
+    ),
+    invertedButtonLabel: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.invertedPrimaryText,
+    ),
+    textFieldHint: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.textFieldHint,
     ),
   );
 }

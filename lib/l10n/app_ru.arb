@@ -1,11 +1,18 @@
 {
     "language": "Русский",
     "welcome": "Добро пожаловать!",
-    "youCan": "С kanban master ты сможешь эффективно управлять своими проектами",
+    "withThis": "С ",
+    "appName": "kanban master",
+    "youCan": " ты сможешь эффективно управлять своими проектами",
     "firstTime": "Впервые у нас?",
     "signUpButton": "Регистрация",
     "signIn": "Вход в аккаунт",
     "signInButton": "Войти",
     "email": "Email",
-    "password": "Пароль"
+    "password": "Пароль",
+    "signUp": "Регистрация",
+    "userNameHint": "Имя пользователя",
+    "createAccountButton": "Создать аккаунт",
+    "haveAccount": "Уже есть аккаунт?",
+    "returnToSignIn": "Вернись к отслеживанию задач\nв "
 }

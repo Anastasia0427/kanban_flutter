@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kanban_flutter/core/theme/app_theme.dart';
+import 'package:kanban_flutter/l10n/app_localizations.dart';
+import 'package:kanban_flutter/presentation/auth/bloc/auth_bloc.dart';
 import 'package:kanban_flutter/service_locator.dart';
+import 'package:kanban_flutter/core/common/navigation/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await setupServiceLocator();
 
-  runApp(const MainApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [BlocProvider(create: (_) => serviceLocator<AuthBloc>())],
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -14,8 +24,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp.router(
+      routerConfig: router,
+      theme: AppTheme.lightTheme,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

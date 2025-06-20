@@ -15,8 +15,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get welcome => 'Добро пожаловать!';
 
   @override
-  String get youCan =>
-      'С kanban master ты сможешь эффективно управлять своими проектами';
+  String get withThis => 'С ';
+
+  @override
+  String get appName => 'kanban master';
+
+  @override
+  String get youCan => ' ты сможешь эффективно управлять своими проектами';
 
   @override
   String get firstTime => 'Впервые у нас?';
@@ -35,4 +40,19 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get password => 'Пароль';
+
+  @override
+  String get signUp => 'Регистрация';
+
+  @override
+  String get userNameHint => 'Имя пользователя';
+
+  @override
+  String get createAccountButton => 'Создать аккаунт';
+
+  @override
+  String get haveAccount => 'Уже есть аккаунт?';
+
+  @override
+  String get returnToSignIn => 'Вернись к отслеживанию задач\nв ';
 }

@@ -106,10 +106,22 @@ abstract class AppLocalizations {
   /// **'Добро пожаловать!'**
   String get welcome;
 
+  /// No description provided for @withThis.
+  ///
+  /// In ru, this message translates to:
+  /// **'С '**
+  String get withThis;
+
+  /// No description provided for @appName.
+  ///
+  /// In ru, this message translates to:
+  /// **'kanban master'**
+  String get appName;
+
   /// No description provided for @youCan.
   ///
   /// In ru, this message translates to:
-  /// **'С kanban master ты сможешь эффективно управлять своими проектами'**
+  /// **' ты сможешь эффективно управлять своими проектами'**
   String get youCan;
 
   /// No description provided for @firstTime.
@@ -147,6 +159,36 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Пароль'**
   String get password;
+
+  /// No description provided for @signUp.
+  ///
+  /// In ru, this message translates to:
+  /// **'Регистрация'**
+  String get signUp;
+
+  /// No description provided for @userNameHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя пользователя'**
+  String get userNameHint;
+
+  /// No description provided for @createAccountButton.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать аккаунт'**
+  String get createAccountButton;
+
+  /// No description provided for @haveAccount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Уже есть аккаунт?'**
+  String get haveAccount;
+
+  /// No description provided for @returnToSignIn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вернись к отслеживанию задач\nв '**
+  String get returnToSignIn;
 }
 
 class _AppLocalizationsDelegate
