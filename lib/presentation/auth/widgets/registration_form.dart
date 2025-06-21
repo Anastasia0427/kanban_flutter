@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kanban_flutter/core/errors/failure.dart';
 import 'package:kanban_flutter/core/extensions/extensions.dart';
+import 'package:kanban_flutter/presentation/auth/bloc/auth_bloc.dart';
 
-class RegistrationForm extends StatelessWidget {
+class RegistrationForm extends StatefulWidget {
   const RegistrationForm({super.key});
+
+  @override
+  State<RegistrationForm> createState() => _RegistrationFormState();
+}
+
+class _RegistrationFormState extends State<RegistrationForm> {
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,42 +35,83 @@ class RegistrationForm extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
-          TextField(
-            decoration: InputDecoration(
-              hintText: context.l10n.userNameHint,
-              hintStyle: GoogleFonts.jost(
-                textStyle: context.text.textFieldHint,
-              ),
-              prefixIcon: Icon(Icons.person_outline),
-              border: OutlineInputBorder(),
-            ),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              String? emailError;
+              if (state is AuthFailure) {
+                if (state.type == FailureType.userAlredyExists) {
+                  emailError = context.l10n.alreadyExists;
+                }
+              } else if (state is AuthValidationFailure) {
+                emailError = state.emailError;
+              }
+              return TextField(
+                onChanged: (_) {
+                  context.read<AuthBloc>().add(InputChanged());
+                },
+                style: context.text.textFieldInput,
+                inputFormatters: [
+                  FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                ],
+                decoration: InputDecoration(
+                  hintText: context.l10n.email,
+                  hintStyle: GoogleFonts.jost(
+                    textStyle: context.text.textFieldHint,
+                  ),
+                  prefixIcon: Icon(Icons.email_outlined),
+                  border: OutlineInputBorder(),
+                  errorText: emailError,
+                  errorStyle: GoogleFonts.jost(
+                    textStyle: context.text.textFieldError,
+                  ),
+                ),
+                controller: email,
+              );
+            },
           ),
           const SizedBox(height: 16),
-          TextField(
-            decoration: InputDecoration(
-              hintText: context.l10n.email,
-              hintStyle: GoogleFonts.jost(
-                textStyle: context.text.textFieldHint,
-              ),
-              prefixIcon: Icon(Icons.email_outlined),
-              border: OutlineInputBorder(),
-            ),
-          ),
-          const SizedBox(height: 16),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              hintText: context.l10n.password,
-              hintStyle: GoogleFonts.jost(
-                textStyle: context.text.textFieldHint,
-              ),
-              prefixIcon: Icon(Icons.lock_outline),
-              border: OutlineInputBorder(),
-            ),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              String? passwordError;
+              if (state is AuthValidationFailure) {
+                passwordError = state.passwordError;
+              }
+              return TextField(
+                onChanged: (_) {
+                  context.read<AuthBloc>().add(InputChanged());
+                },
+                style: context.text.textFieldInput,
+                inputFormatters: [
+                  FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                ],
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: context.l10n.password,
+                  hintStyle: GoogleFonts.jost(
+                    textStyle: context.text.textFieldHint,
+                  ),
+                  prefixIcon: Icon(Icons.lock_outline),
+                  border: OutlineInputBorder(),
+                  errorText: passwordError,
+                  errorStyle: GoogleFonts.jost(
+                    textStyle: context.text.textFieldError,
+                  ),
+                ),
+                controller: password,
+              );
+            },
           ),
           const SizedBox(height: 24),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<AuthBloc>().add(
+                SignUp(
+                  email: email.text,
+                  password: password.text,
+                  context: context,
+                ),
+              );
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: context.color.buttonPrimaryBackground,
               padding: const EdgeInsets.symmetric(vertical: 16),

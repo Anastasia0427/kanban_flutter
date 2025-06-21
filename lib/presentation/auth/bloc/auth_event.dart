@@ -6,17 +6,21 @@ sealed class AuthEvent {}
 class SignIn extends AuthEvent {
   final String email;
   final String password;
+  final BuildContext context;
 
-  SignIn({required this.email, required this.password});
+  SignIn({required this.email, required this.password, required this.context});
 }
 
 class SignUp extends AuthEvent {
   final String email;
   final String password;
+  final BuildContext context;
 
-  SignUp({required this.email, required this.password});
+  SignUp({required this.email, required this.password, required this.context});
 }
 
 class GoToSignUpPage extends AuthEvent {}
 
 class GoToSignInPage extends AuthEvent {}
+
+class InputChanged extends AuthEvent {}

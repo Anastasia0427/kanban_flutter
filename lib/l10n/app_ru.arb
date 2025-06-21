@@ -14,5 +14,11 @@
     "userNameHint": "Имя пользователя",
     "createAccountButton": "Создать аккаунт",
     "haveAccount": "Уже есть аккаунт?",
-    "returnToSignIn": "Вернись к отслеживанию задач\nв "
+    "returnToSignIn": "Вернись к отслеживанию задач\nв ",
+    "alreadyExists": "Пользователь с таким email уже существует",
+    "tooShortPassword": "Пароль должен быть не менее 8 символов",
+    "invalidEmail": "Неверный формат email",
+    "emptyEmail": "Email не может быть пустым",
+    "emptyPassword": "Пароль не может быть пустым",
+    "invalidCredentials": "Неверный email или пароль"
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class LightAppColors {
@@ -8,6 +9,7 @@ class LightAppColors {
 
   static const textFieldBackground = Color(0xffd1d1e1);
   static const textFieldHint = Color(0xffc0dfce);
+  static const textFieldError = Color(0xffD32F2F);
 
   static const primaryText = Color(0xff5f5b85);
   static const invertedPrimaryText = Color(0xffffffff);

@@ -25,14 +25,24 @@ class TextStyles {
       color: LightAppColors.primaryText,
     ),
     invertedButtonLabel: TextStyle(
-      fontSize: 28,
+      fontSize: 24,
       fontWeight: FontWeight.w400,
       color: LightAppColors.invertedPrimaryText,
     ),
     textFieldHint: TextStyle(
-      fontSize: 28,
+      fontSize: 24,
       fontWeight: FontWeight.w400,
       color: LightAppColors.textFieldHint,
+    ),
+    textFieldInput: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.primaryText,
+    ),
+    textFieldError: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.textFieldError,
     ),
   );
 }

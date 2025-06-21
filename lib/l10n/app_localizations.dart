@@ -189,6 +189,42 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Вернись к отслеживанию задач\nв '**
   String get returnToSignIn;
+
+  /// No description provided for @alreadyExists.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пользователь с таким email уже существует'**
+  String get alreadyExists;
+
+  /// No description provided for @tooShortPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пароль должен быть не менее 8 символов'**
+  String get tooShortPassword;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In ru, this message translates to:
+  /// **'Неверный формат email'**
+  String get invalidEmail;
+
+  /// No description provided for @emptyEmail.
+  ///
+  /// In ru, this message translates to:
+  /// **'Email не может быть пустым'**
+  String get emptyEmail;
+
+  /// No description provided for @emptyPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пароль не может быть пустым'**
+  String get emptyPassword;
+
+  /// No description provided for @invalidCredentials.
+  ///
+  /// In ru, this message translates to:
+  /// **'Неверный email или пароль'**
+  String get invalidCredentials;
 }
 
 class _AppLocalizationsDelegate

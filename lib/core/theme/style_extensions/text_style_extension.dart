@@ -9,6 +9,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
   final TextStyle? invertedButtonLabel;
 
   final TextStyle? textFieldHint;
+  final TextStyle? textFieldInput;
+  final TextStyle? textFieldError;
 
   const TextStyleExtension({
     this.largeTitle,
@@ -17,6 +19,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
     this.buttonLabel,
     this.invertedButtonLabel,
     this.textFieldHint,
+    this.textFieldInput,
+    this.textFieldError,
   });
 
   @override
@@ -27,6 +31,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
     TextStyle? buttonLabel,
     TextStyle? invertedButtonLabel,
     TextStyle? textFieldHint,
+    TextStyle? textFieldInput,
+    TextStyle? textFieldError,
   }) {
     return TextStyleExtension(
       largeTitle: largeTitle ?? this.largeTitle,
@@ -35,6 +41,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
       buttonLabel: buttonLabel ?? this.buttonLabel,
       invertedButtonLabel: invertedButtonLabel ?? this.invertedButtonLabel,
       textFieldHint: textFieldHint ?? this.textFieldHint,
+      textFieldInput: textFieldInput ?? this.textFieldInput,
+      textFieldError: textFieldError ?? this.textFieldError,
     );
   }
 
@@ -51,6 +59,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
         t,
       ),
       textFieldHint: TextStyle.lerp(textFieldHint, other?.textFieldHint, t),
+      textFieldInput: TextStyle.lerp(textFieldInput, other?.textFieldInput, t),
+      textFieldError: TextStyle.lerp(textFieldError, other?.textFieldError, t),
     );
   }
 }

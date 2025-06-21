@@ -55,4 +55,22 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get returnToSignIn => 'Вернись к отслеживанию задач\nв ';
+
+  @override
+  String get alreadyExists => 'Пользователь с таким email уже существует';
+
+  @override
+  String get tooShortPassword => 'Пароль должен быть не менее 8 символов';
+
+  @override
+  String get invalidEmail => 'Неверный формат email';
+
+  @override
+  String get emptyEmail => 'Email не может быть пустым';
+
+  @override
+  String get emptyPassword => 'Пароль не может быть пустым';
+
+  @override
+  String get invalidCredentials => 'Неверный email или пароль';
 }
