@@ -50,5 +50,15 @@ class TextStyles {
       color: LightAppColors.primaryText,
       fontFamily: 'NauryzRedKeds',
     ),
+    headerTitle: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.invertedPrimaryText,
+    ),
+    deleteButtonLabel: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.deleteColor,
+    ),
   );
 }

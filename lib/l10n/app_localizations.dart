@@ -231,6 +231,24 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Неверный email или пароль'**
   String get invalidCredentials;
+
+  /// No description provided for @myProjects.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мои проекты'**
+  String get myProjects;
+
+  /// No description provided for @delete.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удалить'**
+  String get delete;
+
+  /// No description provided for @edit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить'**
+  String get edit;
 }
 
 class _AppLocalizationsDelegate

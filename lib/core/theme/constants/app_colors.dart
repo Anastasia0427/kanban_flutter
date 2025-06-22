@@ -4,6 +4,7 @@ import 'package:flutter/painting.dart';
 class LightAppColors {
   static const primaryBackground = Color(0xffe6e6ee);
   static const secondaryBackground = Color(0xfff3f0ef);
+  static const tertiaryBackground = Color(0xffF1EFEF);
 
   static const backgroundElements = Color(0xffd5d5e1);
 
@@ -15,4 +16,6 @@ class LightAppColors {
   static const invertedPrimaryText = Color(0xffffffff);
 
   static const buttonPrimaryBackground = Color(0xff5f5b85);
+
+  static const deleteColor = Color(0xffC76862);
 }

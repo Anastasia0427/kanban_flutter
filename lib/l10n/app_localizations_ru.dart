@@ -76,4 +76,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get invalidCredentials => 'Неверный email или пароль';
+
+  @override
+  String get myProjects => 'Мои проекты';
+
+  @override
+  String get delete => 'Удалить';
+
+  @override
+  String get edit => 'Изменить';
 }

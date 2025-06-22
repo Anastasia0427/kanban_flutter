@@ -5,11 +5,13 @@ class ColorStyles {
   static const lightColorStyle = ColorStyleExtension(
     primaryBackground: LightAppColors.primaryBackground,
     secondaryBackground: LightAppColors.secondaryBackground,
+    tertiaryBackground: LightAppColors.tertiaryBackground,
     backgroundElements: LightAppColors.backgroundElements,
     textFieldBackground: LightAppColors.textFieldBackground,
     textFieldHint: LightAppColors.textFieldHint,
     primaryText: LightAppColors.primaryText,
     invertedPrimaryText: LightAppColors.invertedPrimaryText,
     buttonPrimaryBackground: LightAppColors.buttonPrimaryBackground,
+    deleteColor: LightAppColors.deleteColor,
   );
 }

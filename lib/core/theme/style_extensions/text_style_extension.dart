@@ -14,6 +14,10 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
 
   final TextStyle? largeAppName;
 
+  final TextStyle? headerTitle;
+
+  final TextStyle? deleteButtonLabel;
+
   const TextStyleExtension({
     this.largeTitle,
     this.mediumTitle,
@@ -24,6 +28,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
     this.textFieldInput,
     this.textFieldError,
     this.largeAppName,
+    this.headerTitle,
+    this.deleteButtonLabel,
   });
 
   @override
@@ -37,6 +43,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
     TextStyle? textFieldInput,
     TextStyle? textFieldError,
     TextStyle? largeAppName,
+    TextStyle? headerTitle,
+    TextStyle? deleteButtonLabel,
   }) {
     return TextStyleExtension(
       largeTitle: largeTitle ?? this.largeTitle,
@@ -48,6 +56,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
       textFieldInput: textFieldInput ?? this.textFieldInput,
       textFieldError: textFieldError ?? this.textFieldError,
       largeAppName: largeAppName ?? this.largeAppName,
+      headerTitle: headerTitle ?? this.headerTitle,
+      deleteButtonLabel: deleteButtonLabel ?? this.deleteButtonLabel,
     );
   }
 
@@ -67,6 +77,12 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
       textFieldInput: TextStyle.lerp(textFieldInput, other?.textFieldInput, t),
       textFieldError: TextStyle.lerp(textFieldError, other?.textFieldError, t),
       largeAppName: TextStyle.lerp(largeAppName, other?.largeAppName, t),
+      headerTitle: TextStyle.lerp(headerTitle, other?.headerTitle, t),
+      deleteButtonLabel: TextStyle.lerp(
+        deleteButtonLabel,
+        other?.deleteButtonLabel,
+        t,
+      ),
     );
   }
 }
