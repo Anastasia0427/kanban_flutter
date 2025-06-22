@@ -36,6 +36,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get signInButton => 'Войти';
 
   @override
+  String get username => 'Имя пользователя';
+
+  @override
   String get email => 'Email';
 
   @override

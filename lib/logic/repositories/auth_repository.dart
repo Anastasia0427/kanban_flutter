@@ -25,9 +25,14 @@ class AuthRepository {
   Future<Either<Failure, void>> signUpWithEmailAndPassword(
     String email,
     String password,
+    String username,
   ) async {
     try {
-      await authDataSource.signUpWithEmailAndPassword(email, password);
+      await authDataSource.signUpWithEmailAndPassword(
+        email,
+        password,
+        username,
+      );
       return right(null);
     } on UserAlreadyExistsException {
       return left(Failure(FailureType.userAlredyExists));

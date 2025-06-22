@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kanban_flutter/core/common/widgets/loading_indicator.dart';
 import 'package:kanban_flutter/core/errors/failure.dart';
 import 'package:kanban_flutter/core/extensions/extensions.dart';
 import 'package:kanban_flutter/presentation/auth/bloc/auth_bloc.dart';
@@ -14,6 +15,7 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
+  final TextEditingController username = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
 
@@ -35,6 +37,22 @@ class _RegistrationFormState extends State<RegistrationForm> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
+          TextField(
+            onChanged: (_) {
+              context.read<AuthBloc>().add(InputChanged());
+            },
+            style: GoogleFonts.jost(textStyle: context.text.textFieldInput),
+            decoration: InputDecoration(
+              hintText: context.l10n.username,
+              hintStyle: GoogleFonts.jost(
+                textStyle: context.text.textFieldHint,
+              ),
+              prefixIcon: Icon(Icons.person_outline),
+              border: OutlineInputBorder(),
+            ),
+            controller: username,
+          ),
+          const SizedBox(height: 16),
           BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               String? emailError;
@@ -49,7 +67,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 onChanged: (_) {
                   context.read<AuthBloc>().add(InputChanged());
                 },
-                style: context.text.textFieldInput,
+                style: GoogleFonts.jost(textStyle: context.text.textFieldInput),
                 inputFormatters: [
                   FilteringTextInputFormatter.deny(RegExp(r'\s')),
                 ],
@@ -80,7 +98,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 onChanged: (_) {
                   context.read<AuthBloc>().add(InputChanged());
                 },
-                style: context.text.textFieldInput,
+                style: GoogleFonts.jost(textStyle: context.text.textFieldInput),
                 inputFormatters: [
                   FilteringTextInputFormatter.deny(RegExp(r'\s')),
                 ],
@@ -108,6 +126,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 SignUp(
                   email: email.text,
                   password: password.text,
+                  username: username.text,
                   context: context,
                 ),
               );
@@ -117,11 +136,18 @@ class _RegistrationFormState extends State<RegistrationForm> {
               padding: const EdgeInsets.symmetric(vertical: 16),
               minimumSize: const Size(double.infinity, 48),
             ),
-            child: Text(
-              context.l10n.signUpButton,
-              style: GoogleFonts.jost(
-                textStyle: context.text.invertedButtonLabel,
-              ),
+            child: BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+                if (state is AuthLoading) {
+                  return const LoadingIndicator();
+                }
+                return Text(
+                  context.l10n.signUpButton,
+                  style: GoogleFonts.jost(
+                    textStyle: context.text.invertedButtonLabel,
+                  ),
+                );
+              },
             ),
           ),
         ],

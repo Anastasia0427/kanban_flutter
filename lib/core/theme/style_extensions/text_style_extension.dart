@@ -12,6 +12,8 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
   final TextStyle? textFieldInput;
   final TextStyle? textFieldError;
 
+  final TextStyle? largeAppName;
+
   const TextStyleExtension({
     this.largeTitle,
     this.mediumTitle,
@@ -21,6 +23,7 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
     this.textFieldHint,
     this.textFieldInput,
     this.textFieldError,
+    this.largeAppName,
   });
 
   @override
@@ -33,6 +36,7 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
     TextStyle? textFieldHint,
     TextStyle? textFieldInput,
     TextStyle? textFieldError,
+    TextStyle? largeAppName,
   }) {
     return TextStyleExtension(
       largeTitle: largeTitle ?? this.largeTitle,
@@ -43,6 +47,7 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
       textFieldHint: textFieldHint ?? this.textFieldHint,
       textFieldInput: textFieldInput ?? this.textFieldInput,
       textFieldError: textFieldError ?? this.textFieldError,
+      largeAppName: largeAppName ?? this.largeAppName,
     );
   }
 
@@ -61,6 +66,7 @@ class TextStyleExtension extends ThemeExtension<TextStyleExtension> {
       textFieldHint: TextStyle.lerp(textFieldHint, other?.textFieldHint, t),
       textFieldInput: TextStyle.lerp(textFieldInput, other?.textFieldInput, t),
       textFieldError: TextStyle.lerp(textFieldError, other?.textFieldError, t),
+      largeAppName: TextStyle.lerp(largeAppName, other?.largeAppName, t),
     );
   }
 }

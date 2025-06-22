@@ -24,6 +24,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _onSignIn(SignIn event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+
     String? emailError;
     String? passwordError;
 
@@ -53,13 +55,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       event.email,
       event.password,
     );
-    result.fold(
-      (failure) => emit(AuthFailure(type: failure.type)),
-      (success) {},
-    );
+    result.fold((failure) => emit(AuthFailure(type: failure.type)), (success) {
+      emit(AuthSuccess());
+      router.replace(Routes.mainPage);
+    });
   }
 
   Future<void> _onSignUp(SignUp event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+
     String? emailError;
     String? passwordError;
 
@@ -88,11 +92,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final result = await _authRepository.signUpWithEmailAndPassword(
       event.email,
       event.password,
+      event.username,
     );
-    result.fold(
-      (failure) => emit(AuthFailure(type: failure.type)),
-      (success) {},
-    );
+    result.fold((failure) => emit(AuthFailure(type: failure.type)), (success) {
+      emit(AuthSuccess());
+      router.replace(Routes.mainPage);
+    });
   }
 
   void _onGoToSignUpPage(GoToSignUpPage event, Emitter<AuthState> emit) {

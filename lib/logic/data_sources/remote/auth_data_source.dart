@@ -27,11 +27,13 @@ class AuthDataSource {
   Future<AuthResponse> signUpWithEmailAndPassword(
     String email,
     String password,
+    String username,
   ) async {
     try {
       final result = await _supabaseClient.auth.signUp(
         email: email,
         password: password,
+        data: {'username': username},
       );
       return result;
     } on AuthApiException catch (e) {

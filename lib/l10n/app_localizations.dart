@@ -148,6 +148,12 @@ abstract class AppLocalizations {
   /// **'Войти'**
   String get signInButton;
 
+  /// No description provided for @username.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя пользователя'**
+  String get username;
+
   /// No description provided for @email.
   ///
   /// In ru, this message translates to:

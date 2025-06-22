@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kanban_flutter/core/common/widgets/loading_indicator.dart';
 import 'package:kanban_flutter/core/errors/failure.dart';
 import 'package:kanban_flutter/core/extensions/extensions.dart';
 import 'package:kanban_flutter/presentation/auth/bloc/auth_bloc.dart';
@@ -49,7 +50,7 @@ class _LoginFormState extends State<LoginForm> {
                 onChanged: (_) {
                   context.read<AuthBloc>().add(InputChanged());
                 },
-                style: context.text.textFieldInput,
+                style: GoogleFonts.jost(textStyle: context.text.textFieldInput),
                 inputFormatters: [
                   FilteringTextInputFormatter.deny(RegExp(r'\s')),
                 ],
@@ -80,7 +81,7 @@ class _LoginFormState extends State<LoginForm> {
                 onChanged: (_) {
                   context.read<AuthBloc>().add(InputChanged());
                 },
-                style: context.text.textFieldInput,
+                style: GoogleFonts.jost(textStyle: context.text.textFieldInput),
                 inputFormatters: [
                   FilteringTextInputFormatter.deny(RegExp(r'\s')),
                 ],
@@ -117,11 +118,18 @@ class _LoginFormState extends State<LoginForm> {
               padding: const EdgeInsets.symmetric(vertical: 16),
               minimumSize: const Size(double.infinity, 48),
             ),
-            child: Text(
-              context.l10n.signInButton,
-              style: GoogleFonts.jost(
-                textStyle: context.text.invertedButtonLabel,
-              ),
+            child: BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+                if (state is AuthLoading) {
+                  return const LoadingIndicator();
+                }
+                return Text(
+                  context.l10n.signInButton,
+                  style: GoogleFonts.jost(
+                    textStyle: context.text.invertedButtonLabel,
+                  ),
+                );
+              },
             ),
           ),
         ],

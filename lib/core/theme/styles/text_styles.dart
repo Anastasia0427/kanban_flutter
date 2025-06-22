@@ -44,5 +44,11 @@ class TextStyles {
       fontWeight: FontWeight.w400,
       color: LightAppColors.textFieldError,
     ),
+    largeAppName: TextStyle(
+      fontSize: 40,
+      fontWeight: FontWeight.w400,
+      color: LightAppColors.primaryText,
+      fontFamily: 'NauryzRedKeds',
+    ),
   );
 }
