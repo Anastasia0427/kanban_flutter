@@ -37,7 +37,6 @@ class MainPage extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          // Определяем количество колонок в зависимости от ширины окна
           final crossAxisCount = (constraints.maxWidth / 300).floor().clamp(
             1,
             4,
@@ -49,7 +48,7 @@ class MainPage extends StatelessWidget {
             child: GridView.builder(
               controller: scrollController,
               padding: const EdgeInsets.all(24),
-              itemCount: 13, // 1 кнопка + 12 тестовых проектов
+              itemCount: 13,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: crossAxisCount,
                 crossAxisSpacing: 20,

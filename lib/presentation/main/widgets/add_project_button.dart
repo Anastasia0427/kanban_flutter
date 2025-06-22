@@ -6,20 +6,36 @@ class AddProjectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Material(
-        shape: const CircleBorder(),
-        elevation: 4,
-        color: context.color.tertiaryBackground,
-        child: InkWell(
-          customBorder: const CircleBorder(),
-          onTap: () {
-            // TODO: Открытие модального окна/страницы создания проекта
-          },
-          child: SizedBox(
-            width: 72,
-            height: 72,
-            child: Icon(Icons.add, size: 42, color: context.color.primaryText),
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: context.color.primaryText!.withAlpha(100),
+            width: 1.5,
+          ),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Center(
+          child: Material(
+            shape: const CircleBorder(),
+            elevation: 4,
+            color: context.color.tertiaryBackground,
+            child: InkWell(
+              customBorder: const CircleBorder(),
+              onTap: () {
+                // TODO: Открытие модального окна/страницы создания проекта
+              },
+              child: SizedBox(
+                width: 72,
+                height: 72,
+                child: Icon(
+                  Icons.add,
+                  size: 42,
+                  color: context.color.primaryText,
+                ),
+              ),
+            ),
           ),
         ),
       ),
