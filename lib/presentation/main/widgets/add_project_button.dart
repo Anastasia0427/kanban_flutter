@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kanban_flutter/core/extensions/extensions.dart';
+import 'package:kanban_flutter/presentation/main/widgets/add_board_dialog.dart';
 
 class AddProjectButton extends StatelessWidget {
   const AddProjectButton({super.key});
@@ -24,7 +25,10 @@ class AddProjectButton extends StatelessWidget {
             child: InkWell(
               customBorder: const CircleBorder(),
               onTap: () {
-                // TODO: Открытие модального окна/страницы создания проекта
+                showDialog(
+                  context: context,
+                  builder: (_) => const AddBoardDialog(),
+                );
               },
               child: SizedBox(
                 width: 72,

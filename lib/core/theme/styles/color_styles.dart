@@ -13,5 +13,7 @@ class ColorStyles {
     invertedPrimaryText: LightAppColors.invertedPrimaryText,
     buttonPrimaryBackground: LightAppColors.buttonPrimaryBackground,
     deleteColor: LightAppColors.deleteColor,
+    shadowColor: LightAppColors.appbarShadow,
+    boardPickerColors: LightAppColors.boardPickerColors,
   );
 }

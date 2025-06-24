@@ -85,4 +85,34 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get edit => 'Изменить';
+
+  @override
+  String get errorOccured => 'Произошла ошибка, попробуйте еще раз';
+
+  @override
+  String get newProject => 'Новый проект';
+
+  @override
+  String get name => 'Название';
+
+  @override
+  String get description => 'Описание';
+
+  @override
+  String get color => 'Цвет';
+
+  @override
+  String get add => 'Добавить';
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get emptyName => 'Название не может быть пустым';
+
+  @override
+  String get editBoard => 'Изменить проект';
+
+  @override
+  String get save => 'Сохранить';
 }

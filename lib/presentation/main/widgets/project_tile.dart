@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kanban_flutter/core/extensions/extensions.dart';
+import 'package:kanban_flutter/core/utils/utils.dart';
+import 'package:kanban_flutter/logic/models/board_model.dart';
+import 'package:kanban_flutter/presentation/main/bloc/main_bloc.dart';
+import 'package:kanban_flutter/presentation/main/widgets/edit_board_dialog.dart';
 
 class ProjectTile extends StatelessWidget {
-  const ProjectTile({super.key});
+  final BoardModel board;
+
+  const ProjectTile({super.key, required this.board});
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +21,22 @@ class ProjectTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            decoration: const BoxDecoration(
-              color: Colors.indigo,
+            decoration: BoxDecoration(
+              color: Utils.stringToColor(board.color),
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
             ),
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Доска 1',
-                  style: GoogleFonts.jost(textStyle: context.text.headerTitle),
+                Expanded(
+                  child: Text(
+                    board.name,
+                    style: GoogleFonts.jost(
+                      textStyle: context.text.headerTitle,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 PopupMenuButton<String>(
                   icon: Icon(
@@ -37,7 +49,12 @@ class ProjectTile extends StatelessWidget {
                   padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
                   itemBuilder: (context) => [
                     PopupMenuItem(
-                      value: 'edit',
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => EditBoardDialog(board: board),
+                        );
+                      },
                       child: Center(
                         child: Text(
                           context.l10n.edit,
@@ -49,7 +66,9 @@ class ProjectTile extends StatelessWidget {
                     ),
                     const PopupMenuDivider(height: 1),
                     PopupMenuItem(
-                      value: 'delete',
+                      onTap: () => context.read<MainBloc>().add(
+                        DeleteBoard(boardId: board.boardId!),
+                      ),
                       child: Center(
                         child: Text(
                           context.l10n.delete,
@@ -68,7 +87,7 @@ class ProjectTile extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                'Описание......',
+                board.description,
                 style: GoogleFonts.jost(textStyle: context.text.smallTitle),
               ),
             ),

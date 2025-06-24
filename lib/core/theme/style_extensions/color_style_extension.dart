@@ -17,6 +17,10 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
 
   final Color? deleteColor;
 
+  final Color? shadowColor;
+
+  final List<Color?>? boardPickerColors;
+
   const ColorStyleExtension({
     this.primaryBackground,
     this.secondaryBackground,
@@ -28,6 +32,8 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
     this.invertedPrimaryText,
     this.buttonPrimaryBackground,
     this.deleteColor,
+    this.shadowColor,
+    this.boardPickerColors = const [],
   });
 
   @override
@@ -42,6 +48,8 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
     Color? invertedPrimaryText,
     Color? buttonPrimaryBackground,
     Color? deleteColor,
+    Color? shadowColor,
+    List<Color>? boardPickerColors,
   }) {
     return ColorStyleExtension(
       primaryBackground: primaryBackground ?? this.primaryBackground,
@@ -55,6 +63,8 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
       buttonPrimaryBackground:
           buttonPrimaryBackground ?? this.buttonPrimaryBackground,
       deleteColor: deleteColor ?? this.deleteColor,
+      shadowColor: shadowColor ?? this.shadowColor,
+      boardPickerColors: boardPickerColors ?? this.boardPickerColors,
     );
   }
 
@@ -99,6 +109,16 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
         t,
       ),
       deleteColor: Color.lerp(deleteColor, other?.deleteColor, t),
+      shadowColor: Color.lerp(shadowColor, other?.shadowColor, t),
+      boardPickerColors: List<Color?>.generate(boardPickerColors?.length ?? 0, (
+        index,
+      ) {
+        return Color.lerp(
+          boardPickerColors?[index],
+          other?.boardPickerColors?[index],
+          t,
+        );
+      }),
     );
   }
 }

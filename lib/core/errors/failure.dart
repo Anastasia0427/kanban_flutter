@@ -4,4 +4,12 @@ class Failure {
   Failure(this.type);
 }
 
-enum FailureType { userAlredyExists, invalidCredentials, other }
+enum FailureType {
+  userAlredyExists,
+  invalidCredentials,
+  other,
+  userBoardsFetchError,
+  userBoardsInsertError,
+  userBoardsDeleteError,
+  userBoardsUpdateError,
+}

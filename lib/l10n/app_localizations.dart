@@ -249,6 +249,66 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Изменить'**
   String get edit;
+
+  /// No description provided for @errorOccured.
+  ///
+  /// In ru, this message translates to:
+  /// **'Произошла ошибка, попробуйте еще раз'**
+  String get errorOccured;
+
+  /// No description provided for @newProject.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новый проект'**
+  String get newProject;
+
+  /// No description provided for @name.
+  ///
+  /// In ru, this message translates to:
+  /// **'Название'**
+  String get name;
+
+  /// No description provided for @description.
+  ///
+  /// In ru, this message translates to:
+  /// **'Описание'**
+  String get description;
+
+  /// No description provided for @color.
+  ///
+  /// In ru, this message translates to:
+  /// **'Цвет'**
+  String get color;
+
+  /// No description provided for @add.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить'**
+  String get add;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отмена'**
+  String get cancel;
+
+  /// No description provided for @emptyName.
+  ///
+  /// In ru, this message translates to:
+  /// **'Название не может быть пустым'**
+  String get emptyName;
+
+  /// No description provided for @editBoard.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить проект'**
+  String get editBoard;
+
+  /// No description provided for @save.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранить'**
+  String get save;
 }
 
 class _AppLocalizationsDelegate
