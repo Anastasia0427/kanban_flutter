@@ -34,5 +34,15 @@
     "cancel": "Отмена",
     "emptyName": "Название не может быть пустым",
     "editBoard": "Изменить проект",
-    "save": "Сохранить"
+    "save": "Сохранить",
+    "resetPasswordButton": "Сбросить пароль",
+    "exitFromSystem": "Выйти из системы",
+    "usernameUpdateError": "Ошибка при обновлении имени пользователя",
+    "emailUpdateError": "Ошибка при обновлении email",
+    "passwordUpdateError": "Ошибка при обновлении пароля",
+    "unknownError": "Неизвестная ошибка",
+    "enterNewPassword": "Введите новый пароль",
+    "change": "Изменить",
+    "areYouSure": "Вы уверены?",
+    "exit": "Выйти"
 }

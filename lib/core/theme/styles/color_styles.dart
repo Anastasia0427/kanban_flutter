@@ -14,6 +14,7 @@ class ColorStyles {
     buttonPrimaryBackground: LightAppColors.buttonPrimaryBackground,
     deleteColor: LightAppColors.deleteColor,
     shadowColor: LightAppColors.appbarShadow,
+    inactiveIconButton: LightAppColors.inactiveIconButton,
     boardPickerColors: LightAppColors.boardPickerColors,
   );
 }

@@ -20,6 +20,7 @@ dependencies:
   google_fonts: ^6.2.1
   intl: ^0.20.2
   meta: ^1.16.0
+  overflow_text_animated: ^0.0.6
   supabase_flutter: ^2.9.1
 
 dev_dependencies:

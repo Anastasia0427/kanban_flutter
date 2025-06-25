@@ -5,6 +5,7 @@ import 'package:kanban_flutter/core/theme/app_theme.dart';
 import 'package:kanban_flutter/l10n/app_localizations.dart';
 import 'package:kanban_flutter/presentation/auth/bloc/auth_bloc.dart';
 import 'package:kanban_flutter/presentation/main/bloc/main_bloc.dart';
+import 'package:kanban_flutter/presentation/main/bloc/profile_bloc.dart';
 import 'package:kanban_flutter/service_locator.dart';
 import 'package:kanban_flutter/core/common/navigation/router.dart';
 
@@ -19,6 +20,7 @@ void main() async {
         BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
         BlocProvider(create: (_) => serviceLocator<UserBoardsCubit>()),
         BlocProvider(create: (_) => serviceLocator<MainBloc>()),
+        BlocProvider(create: (_) => serviceLocator<ProfileBloc>()),
       ],
       child: const MainApp(),
     ),

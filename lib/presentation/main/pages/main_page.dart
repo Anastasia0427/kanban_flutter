@@ -5,7 +5,9 @@ import 'package:kanban_flutter/core/common/global_state/user_boards/user_boards_
 import 'package:kanban_flutter/core/extensions/extensions.dart';
 import 'package:kanban_flutter/presentation/main/bloc/main_bloc.dart';
 import 'package:kanban_flutter/presentation/main/widgets/add_project_button.dart';
+import 'package:kanban_flutter/presentation/main/widgets/profile_popup.dart';
 import 'package:kanban_flutter/presentation/main/widgets/project_tile.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -32,7 +34,16 @@ class MainPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                final user = Supabase.instance.client.auth.currentSession?.user;
+                showDialog(
+                  context: context,
+                  builder: (context) => ProfilePopup(
+                    initialUsername: user!.userMetadata?['username'] ?? '',
+                    initialEmail: user.email!,
+                  ),
+                );
+              },
               icon: const Icon(Icons.person_outline, size: 42),
             ),
           ),

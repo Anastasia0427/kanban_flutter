@@ -115,4 +115,34 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get save => 'Сохранить';
+
+  @override
+  String get resetPasswordButton => 'Сбросить пароль';
+
+  @override
+  String get exitFromSystem => 'Выйти из системы';
+
+  @override
+  String get usernameUpdateError => 'Ошибка при обновлении имени пользователя';
+
+  @override
+  String get emailUpdateError => 'Ошибка при обновлении email';
+
+  @override
+  String get passwordUpdateError => 'Ошибка при обновлении пароля';
+
+  @override
+  String get unknownError => 'Неизвестная ошибка';
+
+  @override
+  String get enterNewPassword => 'Введите новый пароль';
+
+  @override
+  String get change => 'Изменить';
+
+  @override
+  String get areYouSure => 'Вы уверены?';
+
+  @override
+  String get exit => 'Выйти';
 }

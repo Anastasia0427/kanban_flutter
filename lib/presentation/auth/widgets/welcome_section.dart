@@ -54,7 +54,7 @@ class WelcomeSection extends StatelessWidget {
             context.read<AuthBloc>().add(GoToSignUpPage());
           },
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: Colors.deepPurple),
+            side: BorderSide(color: context.color.buttonPrimaryBackground!),
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
             minimumSize: const Size(double.infinity, 48),
           ),

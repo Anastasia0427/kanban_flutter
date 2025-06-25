@@ -309,6 +309,66 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Сохранить'**
   String get save;
+
+  /// No description provided for @resetPasswordButton.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сбросить пароль'**
+  String get resetPasswordButton;
+
+  /// No description provided for @exitFromSystem.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выйти из системы'**
+  String get exitFromSystem;
+
+  /// No description provided for @usernameUpdateError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка при обновлении имени пользователя'**
+  String get usernameUpdateError;
+
+  /// No description provided for @emailUpdateError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка при обновлении email'**
+  String get emailUpdateError;
+
+  /// No description provided for @passwordUpdateError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка при обновлении пароля'**
+  String get passwordUpdateError;
+
+  /// No description provided for @unknownError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Неизвестная ошибка'**
+  String get unknownError;
+
+  /// No description provided for @enterNewPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите новый пароль'**
+  String get enterNewPassword;
+
+  /// No description provided for @change.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить'**
+  String get change;
+
+  /// No description provided for @areYouSure.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы уверены?'**
+  String get areYouSure;
+
+  /// No description provided for @exit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выйти'**
+  String get exit;
 }
 
 class _AppLocalizationsDelegate

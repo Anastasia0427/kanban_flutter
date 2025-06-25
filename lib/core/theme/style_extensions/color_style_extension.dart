@@ -19,6 +19,8 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
 
   final Color? shadowColor;
 
+  final Color? inactiveIconButton;
+
   final List<Color?>? boardPickerColors;
 
   const ColorStyleExtension({
@@ -33,6 +35,7 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
     this.buttonPrimaryBackground,
     this.deleteColor,
     this.shadowColor,
+    this.inactiveIconButton,
     this.boardPickerColors = const [],
   });
 
@@ -49,6 +52,7 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
     Color? buttonPrimaryBackground,
     Color? deleteColor,
     Color? shadowColor,
+    Color? inactiveIconButton,
     List<Color>? boardPickerColors,
   }) {
     return ColorStyleExtension(
@@ -64,6 +68,7 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
           buttonPrimaryBackground ?? this.buttonPrimaryBackground,
       deleteColor: deleteColor ?? this.deleteColor,
       shadowColor: shadowColor ?? this.shadowColor,
+      inactiveIconButton: inactiveIconButton ?? this.inactiveIconButton,
       boardPickerColors: boardPickerColors ?? this.boardPickerColors,
     );
   }
@@ -110,6 +115,11 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
       ),
       deleteColor: Color.lerp(deleteColor, other?.deleteColor, t),
       shadowColor: Color.lerp(shadowColor, other?.shadowColor, t),
+      inactiveIconButton: Color.lerp(
+        inactiveIconButton,
+        other?.inactiveIconButton,
+        t,
+      ),
       boardPickerColors: List<Color?>.generate(boardPickerColors?.length ?? 0, (
         index,
       ) {

@@ -12,4 +12,7 @@ enum FailureType {
   userBoardsInsertError,
   userBoardsDeleteError,
   userBoardsUpdateError,
+  userEmailUpdateError,
+  userPasswordUpdateError,
+  usernameUpdateError,
 }
