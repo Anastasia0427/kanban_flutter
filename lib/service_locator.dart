@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:kanban_flutter/core/common/global_state/session/session_cubit.dart';
 import 'package:kanban_flutter/core/common/global_state/user_boards/user_boards_cubit.dart';
 import 'package:kanban_flutter/core/constants/secret_constants.dart';
 import 'package:kanban_flutter/logic/data_sources/remote/auth_data_source.dart';
@@ -19,6 +20,8 @@ Future<void> setupServiceLocator() async {
     url: SecretConstants.projectUrl,
     anonKey: SecretConstants.apiKey,
   );
+
+  serviceLocator.registerSingleton<SessionCubit>(SessionCubit());
 
   serviceLocator.registerFactory(() => AuthDataSource());
   serviceLocator.registerFactory(

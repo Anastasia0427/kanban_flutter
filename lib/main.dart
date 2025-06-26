@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kanban_flutter/core/common/global_state/session/session_cubit.dart';
 import 'package:kanban_flutter/core/common/global_state/user_boards/user_boards_cubit.dart';
 import 'package:kanban_flutter/core/theme/app_theme.dart';
 import 'package:kanban_flutter/l10n/app_localizations.dart';
@@ -17,6 +18,7 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => serviceLocator<SessionCubit>()),
         BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
         BlocProvider(create: (_) => serviceLocator<UserBoardsCubit>()),
         BlocProvider(create: (_) => serviceLocator<MainBloc>()),
