@@ -57,6 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     result.fold((failure) => emit(AuthFailure(type: failure.type)), (success) {
       emit(AuthSuccess());
+      router.replace(Routes.mainPage);
     });
   }
 
@@ -95,6 +96,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     result.fold((failure) => emit(AuthFailure(type: failure.type)), (success) {
       emit(AuthSuccess());
+      router.replace(Routes.mainPage);
     });
   }
 

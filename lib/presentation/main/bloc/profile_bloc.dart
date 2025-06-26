@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kanban_flutter/core/common/navigation/router.dart';
+import 'package:kanban_flutter/core/common/navigation/routes.dart';
 import 'package:kanban_flutter/core/errors/failure.dart';
 import 'package:kanban_flutter/core/extensions/extensions.dart';
 import 'package:kanban_flutter/core/utils/utils.dart';
@@ -67,6 +69,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   void _onSignOut(SignOut event, Emitter<ProfileState> emit) async {
     await authRepository.signOut();
     emit(ProfileInitial());
+    router.replace(Routes.signInPage);
   }
 
   void _onInputChanged(InputChanged event, Emitter<ProfileState> emit) {
