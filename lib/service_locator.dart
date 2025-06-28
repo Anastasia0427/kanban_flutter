@@ -9,6 +9,7 @@ import 'package:kanban_flutter/logic/repositories/auth_repository.dart';
 import 'package:kanban_flutter/logic/repositories/boards_repository.dart';
 import 'package:kanban_flutter/logic/repositories/user_repository.dart';
 import 'package:kanban_flutter/presentation/auth/bloc/auth_bloc.dart';
+import 'package:kanban_flutter/presentation/board/bloc/board_bloc.dart';
 import 'package:kanban_flutter/presentation/main/bloc/main_bloc.dart';
 import 'package:kanban_flutter/presentation/main/bloc/profile_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -53,5 +54,8 @@ Future<void> setupServiceLocator() async {
       userRepository: serviceLocator(),
       authRepository: serviceLocator(),
     ),
+  );
+  serviceLocator.registerLazySingleton(
+    () => BoardBloc(boardsRepository: serviceLocator()),
   );
 }

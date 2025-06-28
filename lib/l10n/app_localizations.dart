@@ -369,6 +369,60 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Выйти'**
   String get exit;
+
+  /// No description provided for @defaultToDo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нужно сделать'**
+  String get defaultToDo;
+
+  /// No description provided for @defaultInProgress.
+  ///
+  /// In ru, this message translates to:
+  /// **'В процессе'**
+  String get defaultInProgress;
+
+  /// No description provided for @defaultDone.
+  ///
+  /// In ru, this message translates to:
+  /// **'Готово'**
+  String get defaultDone;
+
+  /// No description provided for @addTask.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить задачу'**
+  String get addTask;
+
+  /// No description provided for @addColumn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить колонку'**
+  String get addColumn;
+
+  /// No description provided for @newColumn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новая колонка'**
+  String get newColumn;
+
+  /// No description provided for @editColumn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить колонку'**
+  String get editColumn;
+
+  /// No description provided for @created.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создано'**
+  String get created;
+
+  /// No description provided for @edited.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменено'**
+  String get edited;
 }
 
 class _AppLocalizationsDelegate

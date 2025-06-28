@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:intl/intl.dart';
+
 class Utils {
   static bool isValidEmail(String email) {
     return RegExp(
@@ -22,4 +24,7 @@ class Utils {
   static String colorToStringWithAlpha(Color color) {
     return '#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}';
   }
+
+  static final dateDBFormat = DateFormat('yyyy-MM-dd');
+  static final dateFormat = DateFormat('dd.MM.yyyy');
 }

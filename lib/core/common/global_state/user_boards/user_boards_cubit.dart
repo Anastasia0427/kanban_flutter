@@ -41,10 +41,11 @@ class UserBoardsCubit extends Cubit<UserBoardsState> {
   void updateBoard(BoardModel board) {
     if (state is! UserBoardsLoaded) return;
     final current = (state as UserBoardsLoaded).boards;
-    final updatedList = current
-        .where((e) => e.boardId != board.boardId)
-        .toList();
-    updatedList.insert(0, board);
+    final oldIndex = current.indexWhere((e) => e.boardId == board.boardId);
+    if (oldIndex == -1) return;
+    final updatedList = List<BoardModel>.from(current)
+      ..removeAt(oldIndex)
+      ..insert(oldIndex, board);
 
     emit(UserBoardsLoaded(boards: updatedList));
   }

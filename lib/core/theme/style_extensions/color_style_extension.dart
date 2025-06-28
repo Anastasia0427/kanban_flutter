@@ -23,6 +23,10 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
 
   final List<Color?>? boardPickerColors;
 
+  final Color? defaultToDo;
+  final Color? defaultInProgress;
+  final Color? defaultDone;
+
   const ColorStyleExtension({
     this.primaryBackground,
     this.secondaryBackground,
@@ -37,6 +41,9 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
     this.shadowColor,
     this.inactiveIconButton,
     this.boardPickerColors = const [],
+    this.defaultToDo,
+    this.defaultInProgress,
+    this.defaultDone,
   });
 
   @override
@@ -54,6 +61,9 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
     Color? shadowColor,
     Color? inactiveIconButton,
     List<Color>? boardPickerColors,
+    Color? defaultToDo,
+    Color? defaultInProgress,
+    Color? defaultDone,
   }) {
     return ColorStyleExtension(
       primaryBackground: primaryBackground ?? this.primaryBackground,
@@ -70,6 +80,9 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
       shadowColor: shadowColor ?? this.shadowColor,
       inactiveIconButton: inactiveIconButton ?? this.inactiveIconButton,
       boardPickerColors: boardPickerColors ?? this.boardPickerColors,
+      defaultToDo: defaultToDo ?? this.defaultToDo,
+      defaultInProgress: defaultInProgress ?? this.defaultInProgress,
+      defaultDone: defaultDone ?? this.defaultDone,
     );
   }
 
@@ -129,6 +142,13 @@ class ColorStyleExtension extends ThemeExtension<ColorStyleExtension> {
           t,
         );
       }),
+      defaultToDo: Color.lerp(defaultToDo, other?.defaultToDo, t),
+      defaultInProgress: Color.lerp(
+        defaultInProgress,
+        other?.defaultInProgress,
+        t,
+      ),
+      defaultDone: Color.lerp(defaultDone, other?.defaultDone, t),
     );
   }
 }

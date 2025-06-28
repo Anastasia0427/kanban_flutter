@@ -52,7 +52,11 @@ class MainPage extends StatelessWidget {
       body: BlocBuilder<MainBloc, MainState>(
         builder: (context, state) {
           if (state is MainLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: CircularProgressIndicator(
+                color: context.color.primaryText,
+              ),
+            );
           }
           if (state is MainFailure) {
             return Center(

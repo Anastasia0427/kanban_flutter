@@ -13,7 +13,7 @@ class LightAppColors {
   static const textFieldError = Color(0xffD32F2F);
 
   static const primaryText = Color(0xff5f5b85);
-  static const invertedPrimaryText = Color(0xffffffff);
+  static const invertedPrimaryText = Color(0xffF1EFEF);
 
   static const buttonPrimaryBackground = Color(0xff5f5b85);
 
@@ -34,4 +34,8 @@ class LightAppColors {
     Color(0xffBF8EB1),
     Color(0xff6E574A),
   ];
+
+  static const defaultToDo = Color(0xffC76862);
+  static const defaultInProgress = Color(0xffC79B62);
+  static const defaultDone = Color(0xff84AB89);
 }

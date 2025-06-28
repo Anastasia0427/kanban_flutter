@@ -4,8 +4,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kanban_flutter/core/common/global_state/user_boards/user_boards_cubit.dart';
+import 'package:kanban_flutter/core/common/navigation/router.dart';
+import 'package:kanban_flutter/core/common/navigation/routes.dart';
 import 'package:kanban_flutter/core/errors/failure.dart';
+import 'package:kanban_flutter/core/utils/utils.dart';
 import 'package:kanban_flutter/logic/models/board_model.dart';
+import 'package:kanban_flutter/logic/models/column_model.dart';
 import 'package:kanban_flutter/logic/repositories/boards_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -26,6 +30,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     on<AddNewBoard>(_onAddNewBoard);
     on<DeleteBoard>(_onDeleteBoard);
     on<UpdateBoard>(_onUpdateBoard);
+    on<GoToBoardPage>(_onGoToBoardPage);
 
     add(MainFetchUserBoards());
 
@@ -62,12 +67,40 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       description: event.description,
       userId: Supabase.instance.client.auth.currentUser!.id,
       color: event.color,
+      creationDate: DateTime.now(),
+      editDate: DateTime.now(),
     );
-    final result = await boardsRepository.insertBoard(board);
-    result.fold((failure) {}, (success) {
-      userBoardsCubit.addNewBoard(success);
-    });
 
+    final result = await boardsRepository.insertBoard(board);
+    result.fold((failure) {}, (success) async {
+      final defaultColumns = [
+        ColumnModel(
+          columnName: event.defaultToDo,
+          boardId: success.boardId!,
+          color: Utils.colorToStringWithAlpha(event.defaultToDoColor),
+          isEditable: false,
+        ),
+        ColumnModel(
+          columnName: event.defaultInProgress,
+          boardId: success.boardId!,
+          color: Utils.colorToStringWithAlpha(event.defaultInProgressColor),
+          isEditable: false,
+        ),
+        ColumnModel(
+          columnName: event.defaultDone,
+          boardId: success.boardId!,
+          color: Utils.colorToStringWithAlpha(event.defaultDoneColor),
+          isEditable: false,
+        ),
+      ];
+
+      final columnsResult = await boardsRepository.addDefaultColumns(
+        defaultColumns,
+      );
+      columnsResult.fold((failure) {}, (_) {
+        userBoardsCubit.addNewBoard(success);
+      });
+    });
     emit(MainLoaded());
   }
 
@@ -87,6 +120,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       userId: Supabase.instance.client.auth.currentUser!.id,
       color: event.color,
       boardId: event.boardId,
+      creationDate: event.creationDate,
+      editDate: DateTime.now(),
     );
     final result = await boardsRepository.updateBoard(board);
     result.fold((failure) {}, (success) {
@@ -94,6 +129,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     });
 
     emit(MainLoaded());
+  }
+
+  void _onGoToBoardPage(GoToBoardPage event, Emitter<MainState> emit) {
+    router.pushNamed(Routes.boardPage, extra: event.board);
   }
 
   @override

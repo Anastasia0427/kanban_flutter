@@ -145,4 +145,31 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get exit => 'Выйти';
+
+  @override
+  String get defaultToDo => 'Нужно сделать';
+
+  @override
+  String get defaultInProgress => 'В процессе';
+
+  @override
+  String get defaultDone => 'Готово';
+
+  @override
+  String get addTask => 'Добавить задачу';
+
+  @override
+  String get addColumn => 'Добавить колонку';
+
+  @override
+  String get newColumn => 'Новая колонка';
+
+  @override
+  String get editColumn => 'Изменить колонку';
+
+  @override
+  String get created => 'Создано';
+
+  @override
+  String get edited => 'Изменено';
 }

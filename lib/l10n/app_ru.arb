@@ -44,5 +44,14 @@
     "enterNewPassword": "Введите новый пароль",
     "change": "Изменить",
     "areYouSure": "Вы уверены?",
-    "exit": "Выйти"
+    "exit": "Выйти",
+    "defaultToDo": "Нужно сделать",
+    "defaultInProgress": "В процессе",
+    "defaultDone": "Готово",
+    "addTask": "Добавить задачу",
+    "addColumn": "Добавить колонку",
+    "newColumn": "Новая колонка",
+    "editColumn": "Изменить колонку",
+    "created": "Создано",
+    "edited": "Изменено"
 }

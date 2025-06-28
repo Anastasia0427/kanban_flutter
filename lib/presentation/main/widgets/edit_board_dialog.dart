@@ -120,6 +120,7 @@ class _EditBoardDialogState extends State<EditBoardDialog> {
                   name: name,
                   description: desc,
                   color: Utils.colorToStringWithAlpha(selectedColor),
+                  creationDate: widget.board.creationDate,
                 ),
               );
               Navigator.of(context).pop();

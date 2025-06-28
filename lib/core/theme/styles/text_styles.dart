@@ -8,16 +8,19 @@ class TextStyles {
       fontSize: 40,
       fontWeight: FontWeight.w400,
       color: LightAppColors.primaryText,
+      decoration: TextDecoration.none,
     ),
     mediumTitle: TextStyle(
       fontSize: 28,
       fontWeight: FontWeight.w400,
       color: LightAppColors.primaryText,
+      decoration: TextDecoration.none,
     ),
     smallTitle: TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.w400,
       color: LightAppColors.primaryText,
+      decoration: TextDecoration.none,
     ),
     buttonLabel: TextStyle(
       fontSize: 28,
@@ -43,12 +46,6 @@ class TextStyles {
       fontSize: 14,
       fontWeight: FontWeight.w400,
       color: LightAppColors.textFieldError,
-    ),
-    largeAppName: TextStyle(
-      fontSize: 40,
-      fontWeight: FontWeight.w400,
-      color: LightAppColors.primaryText,
-      fontFamily: 'NauryzRedKeds',
     ),
     headerTitle: TextStyle(
       fontSize: 28,

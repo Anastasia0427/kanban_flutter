@@ -1,16 +1,24 @@
+import 'package:flutter/widgets.dart';
+import 'package:kanban_flutter/core/utils/utils.dart';
+
+@immutable
 class BoardModel {
   final int? boardId;
   final String name;
   final String description;
   final String userId;
   final String color;
+  final DateTime creationDate;
+  final DateTime editDate;
 
-  BoardModel({
+  const BoardModel({
     this.boardId,
     required this.name,
     required this.description,
     required this.userId,
     required this.color,
+    required this.creationDate,
+    required this.editDate,
   });
 
   factory BoardModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +28,8 @@ class BoardModel {
       description: json['description'],
       userId: json['user_id'],
       color: json['color'],
+      creationDate: DateTime.parse(json['creation_date']),
+      editDate: DateTime.parse(json['edit_date']),
     );
   }
 
@@ -29,6 +39,8 @@ class BoardModel {
       'description': description,
       'user_id': userId,
       'color': color,
+      'creation_date': Utils.dateDBFormat.format(creationDate),
+      'edit_date': Utils.dateDBFormat.format(editDate),
     };
   }
 }

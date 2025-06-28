@@ -15,4 +15,8 @@ enum FailureType {
   userEmailUpdateError,
   userPasswordUpdateError,
   usernameUpdateError,
+  columnsSelectError,
+  columnInsertError,
+  columnDeleteError,
+  columnUpdateError,
 }

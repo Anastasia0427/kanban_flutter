@@ -4,18 +4,20 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kanban_flutter/core/common/widgets/color_picker_with_dialog.dart';
 import 'package:kanban_flutter/core/extensions/extensions.dart';
 import 'package:kanban_flutter/core/utils/utils.dart';
-import 'package:kanban_flutter/presentation/main/bloc/main_bloc.dart';
+import 'package:kanban_flutter/logic/models/column_model.dart';
+import 'package:kanban_flutter/presentation/board/bloc/board_bloc.dart';
 
-class AddBoardDialog extends StatefulWidget {
-  const AddBoardDialog({super.key});
+class EditColumnDialog extends StatefulWidget {
+  final ColumnModel column;
+
+  const EditColumnDialog({super.key, required this.column});
 
   @override
-  State<AddBoardDialog> createState() => _AddBoardDialogState();
+  State<EditColumnDialog> createState() => _EditColumnDialogState();
 }
 
-class _AddBoardDialogState extends State<AddBoardDialog> {
+class _EditColumnDialogState extends State<EditColumnDialog> {
   final _nameController = TextEditingController();
-  final _descController = TextEditingController();
 
   late final List<Color> availableColors;
   late Color selectedColor;
@@ -24,15 +26,15 @@ class _AddBoardDialogState extends State<AddBoardDialog> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
+    _nameController.text = widget.column.columnName;
     availableColors =
         context.color.boardPickerColors?.whereType<Color>().toList() ?? [];
-    selectedColor = availableColors.first;
+    selectedColor = Utils.stringToColor(widget.column.color);
   }
 
   @override
   void dispose() {
     _nameController.dispose();
-    _descController.dispose();
     super.dispose();
   }
 
@@ -40,10 +42,10 @@ class _AddBoardDialogState extends State<AddBoardDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       titleTextStyle: GoogleFonts.jost(textStyle: context.text.mediumTitle),
-      title: Center(child: Text(context.l10n.newProject)),
+      title: Center(child: Text(context.l10n.editColumn)),
       content: SizedBox(
         width: 400,
-        height: 400,
+        height: 200,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -56,18 +58,6 @@ class _AddBoardDialogState extends State<AddBoardDialog> {
                   textStyle: context.text.smallTitle,
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              style: GoogleFonts.jost(textStyle: context.text.textFieldInput),
-              controller: _descController,
-              decoration: InputDecoration(
-                labelText: context.l10n.description,
-                labelStyle: GoogleFonts.jost(
-                  textStyle: context.text.smallTitle,
-                ),
-              ),
-              maxLines: 3,
             ),
             const SizedBox(height: 16),
             Row(
@@ -106,20 +96,14 @@ class _AddBoardDialogState extends State<AddBoardDialog> {
         ElevatedButton(
           onPressed: () {
             final name = _nameController.text.trim();
-            final desc = _descController.text.trim();
 
             if (name.isNotEmpty) {
-              context.read<MainBloc>().add(
-                AddNewBoard(
+              context.read<BoardBloc>().add(
+                BoardEditColumn(
+                  columnId: widget.column.columnId!,
+                  boardId: widget.column.boardId,
                   name: name,
-                  description: desc,
                   color: Utils.colorToStringWithAlpha(selectedColor),
-                  defaultToDo: context.l10n.defaultToDo,
-                  defaultInProgress: context.l10n.defaultInProgress,
-                  defaultDone: context.l10n.defaultDone,
-                  defaultToDoColor: context.color.defaultToDo!,
-                  defaultInProgressColor: context.color.defaultInProgress!,
-                  defaultDoneColor: context.color.defaultDone!,
                 ),
               );
               Navigator.of(context).pop();
@@ -139,7 +123,7 @@ class _AddBoardDialogState extends State<AddBoardDialog> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              context.l10n.add,
+              context.l10n.save,
               style: GoogleFonts.jost(textStyle: context.text.smallTitle),
             ),
           ),

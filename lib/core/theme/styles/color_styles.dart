@@ -16,5 +16,8 @@ class ColorStyles {
     shadowColor: LightAppColors.appbarShadow,
     inactiveIconButton: LightAppColors.inactiveIconButton,
     boardPickerColors: LightAppColors.boardPickerColors,
+    defaultToDo: LightAppColors.defaultToDo,
+    defaultInProgress: LightAppColors.defaultInProgress,
+    defaultDone: LightAppColors.defaultDone,
   );
 }
