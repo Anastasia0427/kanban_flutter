@@ -53,5 +53,11 @@
     "newColumn": "Новая колонка",
     "editColumn": "Изменить колонку",
     "created": "Создано",
-    "edited": "Изменено"
+    "edited": "Изменено",
+    "newTask": "Новая задача",
+    "deadline": "Дедлайн",
+    "pickDate": "Выбрать дату",
+    "close": "Закрыть",
+    "noDeadline": "Без дедлайна",
+    "removeDeadline": "Убрать дедлайн"
 }

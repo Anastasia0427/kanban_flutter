@@ -1,5 +1,7 @@
+import 'package:kanban_flutter/core/utils/utils.dart';
 import 'package:kanban_flutter/logic/models/board_model.dart';
 import 'package:kanban_flutter/logic/models/column_model.dart';
+import 'package:kanban_flutter/logic/models/task_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BoardsDataSource {
@@ -100,6 +102,55 @@ class BoardsDataSource {
           .from('columns')
           .update({'column_name': column.columnName, 'color': column.color})
           .eq('column_id', column.columnId!);
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<List<TaskModel>> selectTasksByColumnId(int columnId) async {
+    try {
+      final result = await _supabaseClient
+          .from('tasks')
+          .select()
+          .eq('column_id', columnId);
+      return result.map((e) => TaskModel.fromJson(e)).toList();
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<TaskModel> insertTask(TaskModel task) async {
+    try {
+      final result = await _supabaseClient
+          .from('tasks')
+          .insert(task.toJson())
+          .select();
+      return result.map((e) => TaskModel.fromJson(e)).toList().first;
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<void> deleteTask(int taskId) async {
+    try {
+      await _supabaseClient.from('tasks').delete().eq('task_id', taskId);
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<void> updateTask(TaskModel task) async {
+    try {
+      await _supabaseClient
+          .from('tasks')
+          .update({
+            'task_title': task.taskTitle,
+            'task_description': task.taskDescription,
+            'deadline': task.deadline != null
+                ? Utils.dateDBFormat.format(task.deadline!)
+                : null,
+          })
+          .eq('task_id', task.taskId!);
     } on Exception catch (e) {
       throw Exception(e.toString());
     }

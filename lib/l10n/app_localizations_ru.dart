@@ -172,4 +172,22 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get edited => 'Изменено';
+
+  @override
+  String get newTask => 'Новая задача';
+
+  @override
+  String get deadline => 'Дедлайн';
+
+  @override
+  String get pickDate => 'Выбрать дату';
+
+  @override
+  String get close => 'Закрыть';
+
+  @override
+  String get noDeadline => 'Без дедлайна';
+
+  @override
+  String get removeDeadline => 'Убрать дедлайн';
 }

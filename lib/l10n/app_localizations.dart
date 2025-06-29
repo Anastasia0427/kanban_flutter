@@ -423,6 +423,42 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Изменено'**
   String get edited;
+
+  /// No description provided for @newTask.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новая задача'**
+  String get newTask;
+
+  /// No description provided for @deadline.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дедлайн'**
+  String get deadline;
+
+  /// No description provided for @pickDate.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать дату'**
+  String get pickDate;
+
+  /// No description provided for @close.
+  ///
+  /// In ru, this message translates to:
+  /// **'Закрыть'**
+  String get close;
+
+  /// No description provided for @noDeadline.
+  ///
+  /// In ru, this message translates to:
+  /// **'Без дедлайна'**
+  String get noDeadline;
+
+  /// No description provided for @removeDeadline.
+  ///
+  /// In ru, this message translates to:
+  /// **'Убрать дедлайн'**
+  String get removeDeadline;
 }
 
 class _AppLocalizationsDelegate

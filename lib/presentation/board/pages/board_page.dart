@@ -8,6 +8,7 @@ import 'package:kanban_flutter/logic/models/board_model.dart';
 import 'package:kanban_flutter/presentation/board/bloc/board_bloc.dart';
 import 'package:kanban_flutter/presentation/board/pages/board_details_overlay_page.dart';
 import 'package:kanban_flutter/presentation/board/widgets/add_column_dialog.dart';
+import 'package:kanban_flutter/presentation/board/widgets/add_task_dialog.dart';
 import 'package:kanban_flutter/presentation/board/widgets/board_column.dart';
 
 class BoardPage extends StatefulWidget {
@@ -89,7 +90,12 @@ class _BoardPageState extends State<BoardPage> {
                   ),
                 ),
                 PopupMenuItem(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AddTaskDialog(),
+                    );
+                  },
                   child: Center(
                     child: Text(
                       context.l10n.addTask,
@@ -188,10 +194,7 @@ class _BoardPageState extends State<BoardPage> {
                           state.columns.length,
                           (index) => Padding(
                             padding: const EdgeInsets.only(right: 16),
-                            child: BoardColumn(
-                              column: state.columns[index],
-                              mockTasks: [],
-                            ),
+                            child: BoardColumn(column: state.columns[index]),
                           ),
                         ),
                       ),

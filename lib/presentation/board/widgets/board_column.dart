@@ -11,14 +11,13 @@ import 'package:kanban_flutter/presentation/board/widgets/task_tile.dart';
 
 class BoardColumn extends StatelessWidget {
   final ColumnModel column;
-  final List<String> mockTasks;
 
-  const BoardColumn({super.key, required this.column, required this.mockTasks});
+  const BoardColumn({super.key, required this.column});
 
   @override
   Widget build(BuildContext context) {
     final color = Utils.stringToColor(column.color);
-    final showScroll = mockTasks.length > 4;
+    final showScroll = column.tasks.length > 4;
     final ScrollController scrollController = ScrollController();
 
     return LayoutBuilder(
@@ -91,7 +90,7 @@ class BoardColumn extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: mockTasks.isEmpty
+                child: column.tasks.isEmpty
                     ? const SizedBox(height: 12)
                     : Scrollbar(
                         thumbVisibility: showScroll,
@@ -99,9 +98,9 @@ class BoardColumn extends StatelessWidget {
                         child: ListView.builder(
                           controller: scrollController,
                           padding: const EdgeInsets.all(8),
-                          itemCount: mockTasks.length,
+                          itemCount: column.tasks.length,
                           itemBuilder: (context, index) {
-                            return TaskTile(taskName: mockTasks[index]);
+                            return TaskTile(task: column.tasks[index]);
                           },
                         ),
                       ),

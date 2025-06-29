@@ -3,6 +3,7 @@ import 'package:kanban_flutter/core/errors/failure.dart';
 import 'package:kanban_flutter/logic/data_sources/remote/boards_data_source.dart';
 import 'package:kanban_flutter/logic/models/board_model.dart';
 import 'package:kanban_flutter/logic/models/column_model.dart';
+import 'package:kanban_flutter/logic/models/task_model.dart';
 
 class BoardsRepository {
   final BoardsDataSource boardsDataSource;
@@ -91,6 +92,44 @@ class BoardsRepository {
       return right(null);
     } catch (e) {
       return left(Failure(FailureType.columnDeleteError));
+    }
+  }
+
+  Future<Either<Failure, List<TaskModel>>> selectTasksByColumnId(
+    int columnId,
+  ) async {
+    try {
+      final tasks = await boardsDataSource.selectTasksByColumnId(columnId);
+      return right(tasks);
+    } catch (e) {
+      return left(Failure(FailureType.tasksSelectError));
+    }
+  }
+
+  Future<Either<Failure, TaskModel>> addTask(TaskModel task) async {
+    try {
+      final insertedTask = await boardsDataSource.insertTask(task);
+      return right(insertedTask);
+    } catch (e) {
+      return left(Failure(FailureType.taskInsertError));
+    }
+  }
+
+  Future<Either<Failure, void>> deleteTask(int taskId) async {
+    try {
+      await boardsDataSource.deleteTask(taskId);
+      return right(null);
+    } catch (e) {
+      return left(Failure(FailureType.taskDeleteError));
+    }
+  }
+
+  Future<Either<Failure, void>> updateTask(TaskModel task) async {
+    try {
+      await boardsDataSource.updateTask(task);
+      return right(null);
+    } catch (e) {
+      return left(Failure(FailureType.taskUpdateError));
     }
   }
 }

@@ -19,4 +19,8 @@ enum FailureType {
   columnInsertError,
   columnDeleteError,
   columnUpdateError,
+  tasksSelectError,
+  taskInsertError,
+  taskDeleteError,
+  taskUpdateError,
 }

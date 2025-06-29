@@ -58,3 +58,46 @@ class BoardDeleteColumn extends BoardEvent {
   @override
   List<Object> get props => [columnId];
 }
+
+class BoardAddTask extends BoardEvent {
+  final String taskTitle;
+  final String taskDescription;
+  final DateTime? deadline;
+
+  const BoardAddTask({
+    required this.taskTitle,
+    required this.taskDescription,
+    required this.deadline,
+  });
+
+  @override
+  List<Object> get props => [taskTitle, taskDescription];
+}
+
+class BoardUpdateTask extends BoardEvent {
+  final String taskTitle;
+  final String taskDescription;
+  final DateTime? deadline;
+  final int taskId;
+  final DateTime creationDate;
+
+  const BoardUpdateTask({
+    required this.taskTitle,
+    required this.taskDescription,
+    required this.deadline,
+    required this.taskId,
+    required this.creationDate,
+  });
+
+  @override
+  List<Object> get props => [taskTitle, taskDescription, taskId];
+}
+
+class BoardDeleteTask extends BoardEvent {
+  final int taskId;
+
+  const BoardDeleteTask({required this.taskId});
+
+  @override
+  List<Object> get props => [taskId];
+}

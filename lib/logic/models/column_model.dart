@@ -1,9 +1,12 @@
+import 'package:kanban_flutter/logic/models/task_model.dart';
+
 class ColumnModel {
   final int? columnId;
   final String columnName;
   final int boardId;
   final String color;
   final bool isEditable;
+  final List<TaskModel> tasks;
 
   ColumnModel({
     this.columnId,
@@ -11,7 +14,19 @@ class ColumnModel {
     required this.boardId,
     required this.color,
     required this.isEditable,
+    this.tasks = const [],
   });
+
+  ColumnModel copyWith({List<TaskModel>? tasks}) {
+    return ColumnModel(
+      columnId: columnId,
+      columnName: columnName,
+      boardId: boardId,
+      color: color,
+      isEditable: isEditable,
+      tasks: tasks ?? this.tasks,
+    );
+  }
 
   factory ColumnModel.fromJson(Map<String, dynamic> json) {
     return ColumnModel(

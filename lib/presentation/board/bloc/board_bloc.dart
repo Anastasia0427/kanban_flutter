@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kanban_flutter/core/errors/failure.dart';
 import 'package:kanban_flutter/logic/models/column_model.dart';
+import 'package:kanban_flutter/logic/models/task_model.dart';
 import 'package:kanban_flutter/logic/repositories/boards_repository.dart';
 
 part 'board_event.dart';
@@ -15,6 +16,9 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
     on<BoardAddColumn>(_onBoardAddColumn);
     on<BoardEditColumn>(_onBoardEditColumn);
     on<BoardDeleteColumn>(_onBoardDeleteColumn);
+    on<BoardAddTask>(_onBoardAddTask);
+    on<BoardUpdateTask>(_onBoardUpdateTask);
+    on<BoardDeleteTask>(_onBoardDeleteTask);
   }
 
   void _onBoardFetchColumns(
@@ -22,15 +26,32 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
     Emitter<BoardState> emit,
   ) async {
     emit(BoardLoading());
-    final result = await boardsRepository.selectColumnsByBoardId(event.boardId);
-    result.fold(
-      (failure) {
-        emit(BoardFailure(type: failure.type));
-      },
-      (columns) {
-        emit(BoardLoaded(columns: columns));
-      },
+
+    final columnsResult = await boardsRepository.selectColumnsByBoardId(
+      event.boardId,
     );
+
+    if (columnsResult.isLeft()) {
+      final failure = columnsResult.fold((f) => f, (_) => throw Exception());
+      emit(BoardFailure(type: failure.type));
+      return;
+    }
+
+    final columns = columnsResult.fold((_) => [], (columns) => columns);
+
+    final List<ColumnModel> columnsWithTasks = await Future.wait(
+      columns.map((column) async {
+        final tasksResult = await boardsRepository.selectTasksByColumnId(
+          column.columnId!,
+        );
+        return tasksResult.fold(
+          (_) => column,
+          (tasks) => column.copyWith(tasks: tasks),
+        );
+      }),
+    );
+
+    emit(BoardLoaded(columns: columnsWithTasks));
   }
 
   void _onBoardAddColumn(BoardAddColumn event, Emitter<BoardState> emit) async {
@@ -89,5 +110,124 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
 
       emit(BoardLoaded(columns: updatedList));
     });
+  }
+
+  void _onBoardAddTask(BoardAddTask event, Emitter<BoardState> emit) async {
+    final currentState = state;
+    if (currentState is! BoardLoaded) return;
+
+    final targetColumn = currentState.columns.firstWhere(
+      (c) => c.isEditable == false,
+      orElse: () => currentState.columns.first,
+    );
+
+    final result = await boardsRepository.addTask(
+      TaskModel(
+        taskTitle: event.taskTitle,
+        taskDescription: event.taskDescription,
+        deadline: event.deadline,
+        columnId: targetColumn.columnId!,
+        creationDate: DateTime.now(),
+      ),
+    );
+    result.fold((failure) {}, (success) {
+      final updatedColumns = currentState.columns.map((col) {
+        if (col.columnId == targetColumn.columnId) {
+          return col.copyWith(tasks: [...col.tasks, success]);
+        }
+        return col;
+      }).toList();
+
+      emit(BoardLoaded(columns: updatedColumns));
+    });
+  }
+
+  void _onBoardUpdateTask(
+    BoardUpdateTask event,
+    Emitter<BoardState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is! BoardLoaded) return;
+
+    ColumnModel? targetColumn;
+    TaskModel? existingTask;
+
+    for (final column in currentState.columns) {
+      final task = column.tasks.firstWhere((t) => t.taskId == event.taskId);
+      targetColumn = column;
+      existingTask = task;
+      break;
+    }
+
+    if (existingTask == null || targetColumn == null) return;
+
+    final updatedTask = existingTask.copyWith(
+      taskTitle: event.taskTitle,
+      taskDescription: event.taskDescription,
+      deadline: event.deadline,
+      creationDate: event.creationDate,
+    );
+
+    final result = await boardsRepository.updateTask(updatedTask);
+
+    result.fold(
+      (failure) {
+        emit(BoardFailure(type: failure.type));
+      },
+      (success) {
+        final updatedColumns = currentState.columns.map((col) {
+          if (col.columnId == targetColumn!.columnId) {
+            final updatedTasks = col.tasks.map((task) {
+              return task.taskId == updatedTask.taskId ? updatedTask : task;
+            }).toList();
+            return col.copyWith(tasks: updatedTasks);
+          }
+          return col;
+        }).toList();
+
+        emit(BoardLoaded(columns: updatedColumns));
+      },
+    );
+  }
+
+  void _onBoardDeleteTask(
+    BoardDeleteTask event,
+    Emitter<BoardState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is! BoardLoaded) return;
+
+    ColumnModel? targetColumn;
+    TaskModel? existingTask;
+
+    for (final column in currentState.columns) {
+      final task = column.tasks.firstWhere((t) => t.taskId == event.taskId);
+      targetColumn = column;
+      existingTask = task;
+      break;
+    }
+
+    if (existingTask == null || targetColumn == null) return;
+
+    final result = await boardsRepository.deleteTask(event.taskId);
+
+    result.fold(
+      (failure) {
+        emit(BoardFailure(type: failure.type));
+      },
+      (success) {
+        final updatedColumns = currentState.columns.map((col) {
+          if (col.columnId == targetColumn!.columnId) {
+            final updatedTasks = col.tasks.where((task) {
+              return task.taskId != event.taskId;
+            }).toList();
+            return col.copyWith(tasks: updatedTasks);
+          }
+          return col;
+        }).toList();
+
+        emit(BoardLoaded(columns: updatedColumns));
+      },
+    );
   }
 }
