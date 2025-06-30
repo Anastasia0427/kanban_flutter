@@ -7,19 +7,15 @@ import 'package:kanban_flutter/core/errors/failure.dart';
 import 'package:kanban_flutter/core/extensions/extensions.dart';
 import 'package:kanban_flutter/presentation/auth/bloc/auth_bloc.dart';
 
-class RegistrationForm extends StatefulWidget {
-  const RegistrationForm({super.key});
+class ForgotPasswordForm extends StatefulWidget {
+  const ForgotPasswordForm({super.key});
 
   @override
-  State<RegistrationForm> createState() => _RegistrationFormState();
+  State<ForgotPasswordForm> createState() => _ForgotPasswordFormState();
 }
 
-class _RegistrationFormState extends State<RegistrationForm> {
-  final TextEditingController username = TextEditingController();
+class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
   final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
-
-  String? usernameError;
 
   @override
   Widget build(BuildContext context) {
@@ -34,37 +30,23 @@ class _RegistrationFormState extends State<RegistrationForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            context.l10n.signUp,
+            context.l10n.resetPassword,
             style: GoogleFonts.jost(textStyle: context.text.largeTitle),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 24),
-          TextField(
-            onChanged: (_) {
-              context.read<AuthBloc>().add(InputChanged());
-            },
-            style: GoogleFonts.jost(textStyle: context.text.textFieldInput),
-            decoration: InputDecoration(
-              hintText: context.l10n.username,
-              hintStyle: GoogleFonts.jost(
-                textStyle: context.text.textFieldHint,
-              ),
-              prefixIcon: Icon(Icons.person_outline),
-              border: OutlineInputBorder(),
-              errorText: usernameError,
-              errorStyle: GoogleFonts.jost(
-                textStyle: context.text.textFieldError,
-              ),
-            ),
-            controller: username,
-          ),
           const SizedBox(height: 16),
+          Text(
+            context.l10n.resetPasswordMessage,
+            style: GoogleFonts.jost(textStyle: context.text.mediumTitle),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 24),
           BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               String? emailError;
               if (state is AuthFailure) {
-                if (state.type == FailureType.userAlredyExists) {
-                  emailError = context.l10n.alreadyExists;
+                if (state.type == FailureType.invalidCredentials) {
+                  emailError = context.l10n.invalidCredentials;
                 }
               } else if (state is AuthValidationFailure) {
                 emailError = state.emailError;
@@ -93,55 +75,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
               );
             },
           ),
-          const SizedBox(height: 16),
-          BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) {
-              String? passwordError;
-              if (state is AuthValidationFailure) {
-                passwordError = state.passwordError;
-              }
-              return TextField(
-                onChanged: (_) {
-                  context.read<AuthBloc>().add(InputChanged());
-                },
-                style: GoogleFonts.jost(textStyle: context.text.textFieldInput),
-                inputFormatters: [
-                  FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                ],
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: context.l10n.password,
-                  hintStyle: GoogleFonts.jost(
-                    textStyle: context.text.textFieldHint,
-                  ),
-                  prefixIcon: Icon(Icons.lock_outline),
-                  border: OutlineInputBorder(),
-                  errorText: passwordError,
-                  errorStyle: GoogleFonts.jost(
-                    textStyle: context.text.textFieldError,
-                  ),
-                ),
-                controller: password,
-              );
-            },
-          ),
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () {
-              if (username.text.trim().isEmpty) {
-                setState(() {
-                  usernameError = context.l10n.emptyUsername;
-                });
-                return;
-              }
-
               context.read<AuthBloc>().add(
-                SignUp(
-                  email: email.text,
-                  password: password.text,
-                  username: username.text,
-                  context: context,
-                ),
+                ResetPassword(email: email.text, context: context),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -155,12 +93,26 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   return const LoadingIndicator();
                 }
                 return Text(
-                  context.l10n.signUpButton,
+                  context.l10n.resetPasswordButton,
                   style: GoogleFonts.jost(
                     textStyle: context.text.invertedButtonLabel,
                   ),
                 );
               },
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextButton(
+            onPressed: () {
+              context.read<AuthBloc>().add(GoToSignInPage());
+            },
+            child: Text(
+              context.l10n.iRemembered,
+              style: GoogleFonts.jost(
+                textStyle: context.text.smallTitle?.copyWith(
+                  decoration: TextDecoration.underline,
+                ),
+              ),
             ),
           ),
         ],

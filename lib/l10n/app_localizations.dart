@@ -459,6 +459,36 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Убрать дедлайн'**
   String get removeDeadline;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Забыли пароль?'**
+  String get forgotPassword;
+
+  /// No description provided for @iRemembered.
+  ///
+  /// In ru, this message translates to:
+  /// **'Я вспомнил'**
+  String get iRemembered;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Восстановление пароля'**
+  String get resetPassword;
+
+  /// No description provided for @resetPasswordMessage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите email для восстановления пароля'**
+  String get resetPasswordMessage;
+
+  /// No description provided for @emptyUsername.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя пользователя не может быть пустым'**
+  String get emptyUsername;
 }
 
 class _AppLocalizationsDelegate

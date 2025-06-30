@@ -30,3 +30,12 @@ class GoToSignUpPage extends AuthEvent {}
 class GoToSignInPage extends AuthEvent {}
 
 class InputChanged extends AuthEvent {}
+
+class GoToResetPassword extends AuthEvent {}
+
+class ResetPassword extends AuthEvent {
+  final String email;
+  final BuildContext context;
+
+  ResetPassword({required this.email, required this.context});
+}

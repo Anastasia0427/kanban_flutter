@@ -41,6 +41,15 @@ class AuthRepository {
     }
   }
 
+  Future<Either<Failure, void>> resetPasswordWithEmail(String email) async {
+    try {
+      await authDataSource.resetPasswordWithEmail(email);
+      return right(null);
+    } on Exception {
+      return left(Failure(FailureType.other));
+    }
+  }
+
   Future<void> signOut() async {
     await authDataSource.signOut();
   }

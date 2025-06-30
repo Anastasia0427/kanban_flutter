@@ -190,4 +190,19 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get removeDeadline => 'Убрать дедлайн';
+
+  @override
+  String get forgotPassword => 'Забыли пароль?';
+
+  @override
+  String get iRemembered => 'Я вспомнил';
+
+  @override
+  String get resetPassword => 'Восстановление пароля';
+
+  @override
+  String get resetPasswordMessage => 'Введите email для восстановления пароля';
+
+  @override
+  String get emptyUsername => 'Имя пользователя не может быть пустым';
 }

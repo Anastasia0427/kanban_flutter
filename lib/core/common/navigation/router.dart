@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kanban_flutter/core/common/global_state/session/session_cubit.dart';
 import 'package:kanban_flutter/core/common/navigation/routes.dart';
 import 'package:kanban_flutter/logic/models/board_model.dart';
+import 'package:kanban_flutter/presentation/auth/pages/forgot_password.dart';
 import 'package:kanban_flutter/presentation/auth/pages/sign_in_page.dart';
 import 'package:kanban_flutter/presentation/auth/pages/sign_up_page.dart';
 import 'package:kanban_flutter/presentation/board/pages/board_page.dart';
@@ -39,6 +40,10 @@ final router = GoRouter(
     GoRoute(
       path: Routes.signUpPage,
       builder: (context, state) => const SignUpPage(),
+    ),
+    GoRoute(
+      path: Routes.forgotPasswordPage,
+      builder: (context, state) => const ForgotPassword(),
     ),
     GoRoute(
       path: Routes.mainPage,

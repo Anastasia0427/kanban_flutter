@@ -21,6 +21,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<GoToSignUpPage>(_onGoToSignUpPage);
     on<GoToSignInPage>(_onGoToSignInPage);
     on<InputChanged>(_onInputChanged);
+    on<GoToResetPassword>(_onGoToResetPassword);
+    on<ResetPassword>(_onResetPassword);
   }
 
   Future<void> _onSignIn(SignIn event, Emitter<AuthState> emit) async {
@@ -112,5 +114,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (state is AuthValidationFailure || state is AuthFailure) {
       emit(AuthInitial());
     }
+  }
+
+  void _onGoToResetPassword(GoToResetPassword event, Emitter<AuthState> emit) {
+    router.replace(Routes.forgotPasswordPage);
+  }
+
+  void _onResetPassword(ResetPassword event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+
+    String? emailError;
+
+    if (event.email.isEmpty) {
+      emailError = event.context.l10n.emptyEmail;
+    } else if (!Utils.isValidEmail(event.email)) {
+      emailError = event.context.l10n.invalidEmail;
+    }
+
+    if (emailError != null) {
+      emit(AuthValidationFailure(emailError: emailError, passwordError: null));
+      return;
+    }
+
+    final result = await _authRepository.resetPasswordWithEmail(event.email);
+    result.fold((failure) => emit(AuthFailure(type: failure.type)), (success) {
+      emit(AuthSuccess());
+      router.replace(Routes.signInPage);
+    });
   }
 }

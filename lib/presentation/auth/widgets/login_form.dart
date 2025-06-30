@@ -132,6 +132,20 @@ class _LoginFormState extends State<LoginForm> {
               },
             ),
           ),
+          const SizedBox(height: 16),
+          TextButton(
+            onPressed: () {
+              context.read<AuthBloc>().add(GoToResetPassword());
+            },
+            child: Text(
+              context.l10n.forgotPassword,
+              style: GoogleFonts.jost(
+                textStyle: context.text.smallTitle?.copyWith(
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

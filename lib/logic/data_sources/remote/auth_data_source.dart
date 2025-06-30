@@ -46,6 +46,15 @@ class AuthDataSource {
     }
   }
 
+  Future<void> resetPasswordWithEmail(String email) async {
+    try {
+      final result = await _supabaseClient.auth.resetPasswordForEmail(email);
+      return result;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   Future<void> signOut() async {
     await _supabaseClient.auth.signOut();
   }

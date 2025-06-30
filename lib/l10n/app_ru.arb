@@ -59,5 +59,10 @@
     "pickDate": "Выбрать дату",
     "close": "Закрыть",
     "noDeadline": "Без дедлайна",
-    "removeDeadline": "Убрать дедлайн"
+    "removeDeadline": "Убрать дедлайн",
+    "forgotPassword": "Забыли пароль?",
+    "iRemembered": "Я вспомнил",
+    "resetPassword": "Восстановление пароля",
+    "resetPasswordMessage": "Введите email для восстановления пароля",
+    "emptyUsername": "Имя пользователя не может быть пустым"
 }
