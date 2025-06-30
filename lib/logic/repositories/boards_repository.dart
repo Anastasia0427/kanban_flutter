@@ -132,4 +132,13 @@ class BoardsRepository {
       return left(Failure(FailureType.taskUpdateError));
     }
   }
+
+  Future<Either<Failure, void>> updateTaskColumn(TaskModel task) async {
+    try {
+      await boardsDataSource.updateTaskColumn(task);
+      return right(null);
+    } catch (e) {
+      return left(Failure(FailureType.taskUpdateColumnError));
+    }
+  }
 }

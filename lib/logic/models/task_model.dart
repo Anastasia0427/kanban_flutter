@@ -23,12 +23,13 @@ class TaskModel {
     DateTime? deadline,
     int? columnId,
     DateTime? creationDate,
+    bool resetDeadline = false,
   }) {
     return TaskModel(
       taskId: taskId,
       taskTitle: taskTitle ?? this.taskTitle,
       taskDescription: taskDescription ?? this.taskDescription,
-      deadline: deadline,
+      deadline: resetDeadline ? null : (deadline ?? this.deadline),
       columnId: columnId ?? this.columnId,
       creationDate: creationDate ?? this.creationDate,
     );

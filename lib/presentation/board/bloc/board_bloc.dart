@@ -19,6 +19,7 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
     on<BoardAddTask>(_onBoardAddTask);
     on<BoardUpdateTask>(_onBoardUpdateTask);
     on<BoardDeleteTask>(_onBoardDeleteTask);
+    on<BoardDragTask>(_onBoardDragTask);
   }
 
   void _onBoardFetchColumns(
@@ -166,6 +167,7 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
       taskDescription: event.taskDescription,
       deadline: event.deadline,
       creationDate: event.creationDate,
+      resetDeadline: event.resetDeadline,
     );
 
     final result = await boardsRepository.updateTask(updatedTask);
@@ -224,6 +226,55 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
             return col.copyWith(tasks: updatedTasks);
           }
           return col;
+        }).toList();
+
+        emit(BoardLoaded(columns: updatedColumns));
+      },
+    );
+  }
+
+  void _onBoardDragTask(BoardDragTask event, Emitter<BoardState> emit) async {
+    final currentState = state;
+    if (currentState is! BoardLoaded) return;
+
+    ColumnModel? oldColumn;
+    TaskModel? existingTask;
+
+    for (final column in currentState.columns) {
+      try {
+        final task = column.tasks.firstWhere(
+          (t) => t.taskId == event.task.taskId,
+        );
+        oldColumn = column;
+        existingTask = task;
+        break;
+      } catch (_) {
+        continue;
+      }
+    }
+
+    if (existingTask == null || oldColumn == null) return;
+
+    final newTask = existingTask.copyWith(columnId: event.newColumnId);
+
+    final result = await boardsRepository.updateTaskColumn(newTask);
+
+    result.fold(
+      (failure) {
+        emit(BoardFailure(type: failure.type));
+      },
+      (_) {
+        final updatedColumns = currentState.columns.map((column) {
+          if (column.columnId == oldColumn!.columnId) {
+            final updatedTasks = column.tasks
+                .where((task) => task.taskId != newTask.taskId)
+                .toList();
+            return column.copyWith(tasks: updatedTasks);
+          } else if (column.columnId == event.newColumnId) {
+            return column.copyWith(tasks: [...column.tasks, newTask]);
+          } else {
+            return column;
+          }
         }).toList();
 
         emit(BoardLoaded(columns: updatedColumns));

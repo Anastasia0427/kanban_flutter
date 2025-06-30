@@ -80,6 +80,7 @@ class BoardUpdateTask extends BoardEvent {
   final DateTime? deadline;
   final int taskId;
   final DateTime creationDate;
+  final bool resetDeadline;
 
   const BoardUpdateTask({
     required this.taskTitle,
@@ -87,10 +88,11 @@ class BoardUpdateTask extends BoardEvent {
     required this.deadline,
     required this.taskId,
     required this.creationDate,
+    required this.resetDeadline,
   });
 
   @override
-  List<Object> get props => [taskTitle, taskDescription, taskId];
+  List<Object> get props => [taskTitle, taskDescription, taskId, resetDeadline];
 }
 
 class BoardDeleteTask extends BoardEvent {
@@ -100,4 +102,14 @@ class BoardDeleteTask extends BoardEvent {
 
   @override
   List<Object> get props => [taskId];
+}
+
+final class BoardDragTask extends BoardEvent {
+  final TaskModel task;
+  final int newColumnId;
+
+  const BoardDragTask({required this.task, required this.newColumnId});
+
+  @override
+  List<Object> get props => [task, newColumnId];
 }

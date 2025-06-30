@@ -23,4 +23,5 @@ enum FailureType {
   taskInsertError,
   taskDeleteError,
   taskUpdateError,
+  taskUpdateColumnError,
 }

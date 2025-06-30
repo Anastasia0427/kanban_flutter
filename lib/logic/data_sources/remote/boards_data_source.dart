@@ -155,4 +155,15 @@ class BoardsDataSource {
       throw Exception(e.toString());
     }
   }
+
+  Future<void> updateTaskColumn(TaskModel task) async {
+    try {
+      await _supabaseClient
+          .from('tasks')
+          .update({'column_id': task.columnId})
+          .eq('task_id', task.taskId!);
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

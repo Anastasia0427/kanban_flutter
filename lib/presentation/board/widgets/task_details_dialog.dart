@@ -62,6 +62,7 @@ class _TaskDetailsDialogState extends State<TaskDetailsDialog> {
       taskTitle: titleController.text.trim(),
       taskDescription: descriptionController.text.trim(),
       deadline: deadline,
+      resetDeadline: deadline == null,
     );
 
     context.read<BoardBloc>().add(
@@ -71,6 +72,7 @@ class _TaskDetailsDialogState extends State<TaskDetailsDialog> {
         taskDescription: updatedTask.taskDescription,
         deadline: updatedTask.deadline,
         creationDate: updatedTask.creationDate,
+        resetDeadline: updatedTask.deadline == null,
       ),
     );
 
