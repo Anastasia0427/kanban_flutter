@@ -7,11 +7,20 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
+  equatable: ^2.0.7
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_colorpicker: ^1.1.0
+  flutter_localizations:
+    sdk: flutter
+  fpdart: ^1.1.1
   get_it: ^8.0.3
+  go_router: ^15.2.0
+  google_fonts: ^6.2.1
   intl: ^0.20.2
+  meta: ^1.16.0
+  overflow_text_animated: ^0.0.6
   supabase_flutter: ^2.9.1
 
 dev_dependencies:

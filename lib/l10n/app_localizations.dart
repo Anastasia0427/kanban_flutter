@@ -106,10 +106,22 @@ abstract class AppLocalizations {
   /// **'Добро пожаловать!'**
   String get welcome;
 
+  /// No description provided for @withThis.
+  ///
+  /// In ru, this message translates to:
+  /// **'С '**
+  String get withThis;
+
+  /// No description provided for @appName.
+  ///
+  /// In ru, this message translates to:
+  /// **'kanban master'**
+  String get appName;
+
   /// No description provided for @youCan.
   ///
   /// In ru, this message translates to:
-  /// **'С kanban master ты сможешь эффективно управлять своими проектами'**
+  /// **' ты сможешь эффективно управлять своими проектами'**
   String get youCan;
 
   /// No description provided for @firstTime.
@@ -136,6 +148,12 @@ abstract class AppLocalizations {
   /// **'Войти'**
   String get signInButton;
 
+  /// No description provided for @username.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя пользователя'**
+  String get username;
+
   /// No description provided for @email.
   ///
   /// In ru, this message translates to:
@@ -147,6 +165,330 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Пароль'**
   String get password;
+
+  /// No description provided for @signUp.
+  ///
+  /// In ru, this message translates to:
+  /// **'Регистрация'**
+  String get signUp;
+
+  /// No description provided for @userNameHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя пользователя'**
+  String get userNameHint;
+
+  /// No description provided for @createAccountButton.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать аккаунт'**
+  String get createAccountButton;
+
+  /// No description provided for @haveAccount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Уже есть аккаунт?'**
+  String get haveAccount;
+
+  /// No description provided for @returnToSignIn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вернись к отслеживанию задач\nв '**
+  String get returnToSignIn;
+
+  /// No description provided for @alreadyExists.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пользователь с таким email уже существует'**
+  String get alreadyExists;
+
+  /// No description provided for @tooShortPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пароль должен быть не менее 8 символов'**
+  String get tooShortPassword;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In ru, this message translates to:
+  /// **'Неверный формат email'**
+  String get invalidEmail;
+
+  /// No description provided for @emptyEmail.
+  ///
+  /// In ru, this message translates to:
+  /// **'Email не может быть пустым'**
+  String get emptyEmail;
+
+  /// No description provided for @emptyPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пароль не может быть пустым'**
+  String get emptyPassword;
+
+  /// No description provided for @invalidCredentials.
+  ///
+  /// In ru, this message translates to:
+  /// **'Неверный email или пароль'**
+  String get invalidCredentials;
+
+  /// No description provided for @myProjects.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мои проекты'**
+  String get myProjects;
+
+  /// No description provided for @delete.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удалить'**
+  String get delete;
+
+  /// No description provided for @edit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить'**
+  String get edit;
+
+  /// No description provided for @errorOccured.
+  ///
+  /// In ru, this message translates to:
+  /// **'Произошла ошибка, попробуйте еще раз'**
+  String get errorOccured;
+
+  /// No description provided for @newProject.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новый проект'**
+  String get newProject;
+
+  /// No description provided for @name.
+  ///
+  /// In ru, this message translates to:
+  /// **'Название'**
+  String get name;
+
+  /// No description provided for @description.
+  ///
+  /// In ru, this message translates to:
+  /// **'Описание'**
+  String get description;
+
+  /// No description provided for @color.
+  ///
+  /// In ru, this message translates to:
+  /// **'Цвет'**
+  String get color;
+
+  /// No description provided for @add.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить'**
+  String get add;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отмена'**
+  String get cancel;
+
+  /// No description provided for @emptyName.
+  ///
+  /// In ru, this message translates to:
+  /// **'Название не может быть пустым'**
+  String get emptyName;
+
+  /// No description provided for @editBoard.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить проект'**
+  String get editBoard;
+
+  /// No description provided for @save.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранить'**
+  String get save;
+
+  /// No description provided for @resetPasswordButton.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сбросить пароль'**
+  String get resetPasswordButton;
+
+  /// No description provided for @exitFromSystem.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выйти из системы'**
+  String get exitFromSystem;
+
+  /// No description provided for @usernameUpdateError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка при обновлении имени пользователя'**
+  String get usernameUpdateError;
+
+  /// No description provided for @emailUpdateError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка при обновлении email'**
+  String get emailUpdateError;
+
+  /// No description provided for @passwordUpdateError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка при обновлении пароля'**
+  String get passwordUpdateError;
+
+  /// No description provided for @unknownError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Неизвестная ошибка'**
+  String get unknownError;
+
+  /// No description provided for @enterNewPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите новый пароль'**
+  String get enterNewPassword;
+
+  /// No description provided for @change.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить'**
+  String get change;
+
+  /// No description provided for @areYouSure.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы уверены?'**
+  String get areYouSure;
+
+  /// No description provided for @exit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выйти'**
+  String get exit;
+
+  /// No description provided for @defaultToDo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нужно сделать'**
+  String get defaultToDo;
+
+  /// No description provided for @defaultInProgress.
+  ///
+  /// In ru, this message translates to:
+  /// **'В процессе'**
+  String get defaultInProgress;
+
+  /// No description provided for @defaultDone.
+  ///
+  /// In ru, this message translates to:
+  /// **'Готово'**
+  String get defaultDone;
+
+  /// No description provided for @addTask.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить задачу'**
+  String get addTask;
+
+  /// No description provided for @addColumn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить колонку'**
+  String get addColumn;
+
+  /// No description provided for @newColumn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новая колонка'**
+  String get newColumn;
+
+  /// No description provided for @editColumn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить колонку'**
+  String get editColumn;
+
+  /// No description provided for @created.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создано'**
+  String get created;
+
+  /// No description provided for @edited.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменено'**
+  String get edited;
+
+  /// No description provided for @newTask.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новая задача'**
+  String get newTask;
+
+  /// No description provided for @deadline.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дедлайн'**
+  String get deadline;
+
+  /// No description provided for @pickDate.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать дату'**
+  String get pickDate;
+
+  /// No description provided for @close.
+  ///
+  /// In ru, this message translates to:
+  /// **'Закрыть'**
+  String get close;
+
+  /// No description provided for @noDeadline.
+  ///
+  /// In ru, this message translates to:
+  /// **'Без дедлайна'**
+  String get noDeadline;
+
+  /// No description provided for @removeDeadline.
+  ///
+  /// In ru, this message translates to:
+  /// **'Убрать дедлайн'**
+  String get removeDeadline;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Забыли пароль?'**
+  String get forgotPassword;
+
+  /// No description provided for @iRemembered.
+  ///
+  /// In ru, this message translates to:
+  /// **'Я вспомнил'**
+  String get iRemembered;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Восстановление пароля'**
+  String get resetPassword;
+
+  /// No description provided for @resetPasswordMessage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите email для восстановления пароля'**
+  String get resetPasswordMessage;
+
+  /// No description provided for @emptyUsername.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя пользователя не может быть пустым'**
+  String get emptyUsername;
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,6 @@
 {
-    "name": "kanaban_flutter",
-    "short_name": "kanaban_flutter",
+    "name": "kanban_flutter",
+    "short_name": "kanban_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
